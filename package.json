@@ -6,11 +6,9 @@
   "scripts": {
     "test": "make test"
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
-
+    "gulp": "^3.9.1"
   },
   "author": "yaotaiyang",
   "contributors": [
