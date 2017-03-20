@@ -25,16 +25,21 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task('minifyjs',function() {
-    return gulp.src(['js/base.js'])      //需要操作的文件
+    return gulp.src(['js/*.js','!js/wuui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
         .pipe(concat('wuui.js'))    //合并所有js到wuui.js
         .pipe(gulp.dest('js'))       //输出到文件夹
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
-        .pipe(uglify())    //压缩
+        //.pipe(uglify())    //压缩
         .pipe(gulp.dest('dist/js'));  //输出
 });
 gulp.task('copy',['css','minifyjs'],function(){
     return gulp.src(['js/template.js','js/zepto.min.js','js/wuui.js'])
         .pipe(gulp.dest('dist/js'));
 });
-var arrtask = ["copy"];
+
+//监听文件变化
+gulp.task('watch', function () {
+    gulp.watch(['js/*.*','less/*.*'], ['copy']);
+});
+var arrtask = ["copy","watch"];
 gulp.task('default', arrtask);
