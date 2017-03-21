@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander'),
+  execFile = require('child_process').execFile,
+  path = require('path'),
+  fs = require('fs'),
+  join = path.join,
+  doxmate = require('../');
+
+program
+  .version(doxmate.version);
+
+// examples
+program.on('--help', function () {
+  console.log('  Commands:');
+  console.log('');
+  console.log('    build         create a api docs');
+  console.log('    theme         custom theme');
+  console.log('');
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ doxmate build -o <folder> -s pomelo -d src/js/');
+  console.log('');
+  process.exit();
+});
+
+// parse argv
+program.parse(process.argv);
+
+// args void of cmd
+var args = process.argv.slice(3);
+
+// command
+var cmd = program.args[0];
+
+// display help
+function showHelp() {
+  process.stdout.write(program.helpInformation());
+  program.emit('--help');
+}
+
+if (!cmd) {
+  return showHelp();
+}
+
+// executable
+var bin = 'doxmate-' + cmd;
+
+// local
+var local = join(__dirname, bin);
+if (fs.existsSync(local)) {
+  bin = local;
+} else {
+  console.log('Can\'t find command ' + cmd + '.');
+  return showHelp();
+}
+
+// execute command
+var options = {maxBuffer: 1024 * 1024};
+execFile(local, args, options, function (err, stdout) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(stdout);
+});

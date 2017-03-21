@@ -1,0 +1,102 @@
+<div class='cls' id='api_<%=basename%>'>
+  <div class='clstt'>
+    <h2><%=basename%></h2>
+  </div>
+
+<% for (var i = 0, l = comments.length; i < l; i++) {
+  var comment = comments[i];
+  if (comment.ignore) {
+    continue;
+  }
+%>
+  <div class='method' id='<%= comment.ctx ? comment.ctx.receiver + '_' + comment.ctx.name : ''%>'>
+    <div class='methodtt'>
+    <% if (comment.ctx) { %>
+      <h3><%=comment.ctx.name%></h3>
+      <h4><%=comment.ctx.string %></h4>
+    <% } %>
+      <div>
+      <% if (comment.code) { %>
+        <%-comment.description.full%>
+      <% } %>
+      </div>
+    <% if (comment.ctx) { %>
+      <p class='type'>type: <%=types[comment.ctx.type] %></p>
+    <% } %>
+    </div>
+<%
+  comment.hasParams = false;
+  for (var j = 0, k = comment.tags.length; j < k; j++) { 
+    var tag = comment.tags[j];
+    switch (tag.type) {
+    case 'return':
+  %>
+      <div class='params'>
+        <h4>Returns</h4>
+        <p><%=tag.types && tag.types.join(',')%></p>
+        <p><pre><%=tag.description%></pre></p>
+      </div>
+  <% break;
+    case 'param':
+    %>
+    <div class='params'>
+    <% if (!comment.hasParam) { %>
+      <h4>Params</h4>
+    <%
+      comment.hasParam = true; 
+    }
+    %>
+      <ul>
+        <li><%=tag.name%> - <%=tag.description%></li>
+      </ul>
+    </div>
+  <% break;
+    case 'api':
+  %>
+    <div class='params'>
+      <h4>API</h4>
+      <p><%=types[tag.type]%></p>
+      <p><%=tag.visibility%></p>
+    </div>
+  <% break;
+    case 'example':
+  %>
+    <div class='params'>
+      <h4>Example</h4>
+      <p><%=types[tag.type]%></p>
+      <p><pre><%=tag.string%></pre></p>
+    </div>
+  <% break;
+    case 'exception':
+  %>
+    <div class='params'>
+      <h4>Exception</h4>
+      <p><%=types[tag.type]%></p>
+      <p><pre><%=tag.string%></pre></p>
+    </div>
+  <% break;
+    case 'callmethod':
+  %>
+    <div class='params'>
+      <h4>Call Method</h4>
+      <p><%=types[tag.type]%></p>
+      <p><pre><%=tag.string%></pre></p>
+    </div>
+  <% break;
+    default:%>
+    <div class='params'>
+      <h4><%=types[tag.type]%></h4>
+      <p><%=tag.types && tag.types.join(',')%> - <%=tag.name%></p>
+      <p><%=tag.description%></p>
+    </div>
+  <% } %>
+<% } %>
+  <% if (comment.code && options.outputSourceFiles) { %>
+    <div class='source'>
+      <h4>Source</h4>
+      <pre><code><%=comment.code%></code></pre>
+    </div>
+  <% } %>
+  </div>
+<% } %>
+</div>

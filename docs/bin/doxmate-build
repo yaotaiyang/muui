@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander'),
+  mkdirp = require('mkdirp'),
+  fs = require('fs'),
+  path = require('path'),
+  doxmate = require('../');
+
+// options
+
+program
+  .option('-o, --output <folder>', 'which folder to output.')
+  .option('-d, --dir <folder>', 'which folder to find source code.')
+  .option('-s, --skin <folder>', 'where is the skin.', 'default');
+
+// parse argv
+program.parse(process.argv);
+
+if (program.output) {
+  program.output = path.resolve(program.output);
+} else {
+  program.output = path.resolve('doc');
+}
+
+// make sure output dir exists
+var docPath = program.output;
+var docExists = fs.existsSync(docPath);
+if (!docExists) {
+  mkdirp.sync(docPath);
+}
+
+doxmate.process(path.resolve('.'), program.output, program.skin, program.dir);
+console.log('Generated at "' + program.output + '".');
+console.log('Please open "' + program.output + '/index.html" to view it');

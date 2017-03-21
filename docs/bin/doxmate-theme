@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander'),
+  path = require('path'),
+  doxmate = require('../');
+
+// options
+program
+  .option('-s, --skin <folder>', 'where is the skin.', 'default');
+
+program.on('--help', function () {
+  console.log('  Commands:');
+  console.log('');
+  console.log('    list          show all api docs theme');
+  console.log('    export        export theme');
+  console.log('');
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ doxmate theme list');
+  console.log('');
+  process.exit();
+});
+
+program.parse(process.argv);
+
+// command
+var cmd = program.args[0];
+
+// display help
+function showHelp() {
+  process.stdout.write(program.helpInformation());
+  program.emit('--help');
+}
+
+if (!cmd) {
+  return showHelp();
+}
+
+if (cmd === 'list') {
+  console.log(doxmate.list());
+} else if (cmd === 'export') {
+  doxmate.export(program.skin, function () {
+    console.log('Exported at "' + path.resolve('.') + '".');
+    console.log('You can edit "' + path.resolve('.', 'doxmate-templates/' + program.skin) + '" for custom theme style.');
+  });
+} else {
+  return showHelp();
+}
