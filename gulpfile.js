@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     autoprefixer = require('gulp-autoprefixer'),//给 CSS 增加前缀。解决某些CSS属性不是标准属性，有各种浏览器前缀的情况
     rename = require('gulp-rename'),//设置压缩后的文件名
-    cssmin = require('gulp-minify-css');
+    cssmin = require('gulp-minify-css'),
+    connect =require('gulp-connect');
 gulp.task('css', function () {
     //编译src目录下的所有less文件
     //除了reset.less和test.less（**匹配src/less的0个或多个子文件夹）
@@ -36,10 +37,16 @@ gulp.task('copy',['css','minifyjs'],function(){
     return gulp.src(['js/template.js','js/zepto.min.js','js/wuui.js'])
         .pipe(gulp.dest('dist/js'));
 });
-
+gulp.task('connect', function () {
+    connect.server({
+        port: 9900,
+        root: './',
+        livereload: false
+    });
+});
 //监听文件变化
 gulp.task('watch', function () {
     gulp.watch(['js/*.*','less/*.*'], ['copy']);
 });
-var arrtask = ["copy","watch"];
+var arrtask = ["copy","watch","connect"];
 gulp.task('default', arrtask);

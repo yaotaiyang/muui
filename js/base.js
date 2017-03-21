@@ -11,7 +11,6 @@
     var vendors = { Webkit: 'webkit', Moz: '', O: 'o' },eventPrefix="",testEl = document.createElement('div');
     $.each(vendors, function(vendor, event){
         if (testEl.style[vendor + 'TransitionProperty'] !== undefined) {
-            prefix = vendor.toLowerCase();
             eventPrefix = event;
         }
     });
@@ -19,4 +18,3 @@
         "transition":{"end":eventPrefix+"TransitionEnd"}
     };
 })($);
-console.log("hello wuui-a");

@@ -2,6 +2,16 @@
  * Created by yaoxy on 2017/3/20.
  * 按钮组建底部弹出按钮
  */
+$(window).on("pageshow",function(e){
+    if(window.performance&&window.performance.navigation&&window.performance.navigation.type==1){ //刷新
+        if($.Hash.hasHash(/wuuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
+            var resObj = $.Hash.removeHash(/wuuimodal.+/,location.href);
+            if(resObj.dels && resObj.dels.length){
+                history.go(-resObj.dels.length);//历史回退
+            }
+        }
+    }
+});
 ;$.actionsheet = function(option){
     var source = '<div class="modal wuui-actionsheet fade">\
         <div class="modal-dialog">\
@@ -9,7 +19,7 @@
                 <div class="modal-body">\
                     <ul class="wuui-actionsheet-ul">\
                     \{{each list as item key}}\
-                    <li data-ac="active" data-type="{{item.type}}" class="wuui-border-1px wuui-ui-li">{{item.text}}</li>\
+                    <li data-ac="active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="wuui-border-1px wuui-ui-li">{{item.text}}</li>\
                     {{/each}}\
                     </ul>\
                     <ul class="wuui-actionsheet-ul">\
@@ -24,10 +34,32 @@
         container:"body",
         history:true//默认hash处理,接管浏览器返回
     },option);
-    var guid= $.guid(), render = template.compile(source),$html = $(render({list:opt.list}));
+    var guid= $.guid(),modal_id = "wuuimodal-"+guid, render = template.compile(source),$html = $(render({list:opt.list}));
     $(opt.container).append($html);
     $html.data("guid", guid);
+    if(opt.history){
+        $.Hash.setHash(modal_id,1);
+    }
     $html.modal();
+    $(window).on("hashchange",function(e){
+        if(!opt.history) return;
+        var newUrl = e.newURL,oldUrl = e.oldURL;
+        if(newUrl && oldUrl && $.Hash.getHashObj(oldUrl)[modal_id]==1&&$.Hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
+            $html.data('hide-type','navigate-back').modal('hide');
+        }else{
+            $html.data('hide-type','normal');
+        }
+    });
+    $html.on("hidden",function(){
+        if($html.data("hide-type")=="navigate-back"){
+            $.Hash.removeHash(modal_id);
+        }else{
+            if(opt.history){
+                history.back();
+            }
+            $.Hash.removeHash(modal_id);
+        }
+    });
     return $html;
 };
 /**
@@ -83,7 +115,6 @@ $(function(){
     var vendors = { Webkit: 'webkit', Moz: '', O: 'o' },eventPrefix="",testEl = document.createElement('div');
     $.each(vendors, function(vendor, event){
         if (testEl.style[vendor + 'TransitionProperty'] !== undefined) {
-            prefix = vendor.toLowerCase();
             eventPrefix = event;
         }
     });
@@ -91,62 +122,111 @@ $(function(){
         "transition":{"end":eventPrefix+"TransitionEnd"}
     };
 })($);
-console.log("hello wuui-a");
 /**
  * Created by yaoxy on 2017/3/20.
  */
 (function ($) {
     var hashObj = {};
-    $.hash = function(url){
-        var me = this;
-        me.url = url||location.href;
-        this.hasHash = function (str) {
-            if (!!hashObj[str]) {
+    $.Hash = {
+        hasHash: function (e,url) {
+            hashObj = splitHash(url || location.href);
+            if (typeof e == 'string' && !!hashObj[e]) {
                 return true
+            }else if(e instanceof RegExp){
+                var res = false;
+                for(var key in hashObj){
+                    if(key.match(e) && key.match(e)[0]==key){
+                        res = true;
+                        break;
+                    }
+                }
+                return res;
             } else {
                 return false
             }
-        };
-        this.getHash = function (str) {
-            splitHash(me.url);
-            return hashObj[str]
-        };
-        this.setHash = function (key, value) {
-            $.hash.getHash();
-            hashObj[key] = (value == undefined ? "" : value);
-            addHash()
-        };
-        this.removeHash  = function (e) {
-            delete (hashObj[e]);
-            addHash()
-        };
-        this.clearHash = function () {
-            location.hash = "";
-            hashObj = {}
-        };
+        }, getHash: function (e) {
+            hashObj = splitHash(location.href);
+            return hashObj[e]
+        }, setHash: function (e, f,url) {
+            var curHash=null;
+            if(!url){
+                curHash = hashObj = splitHash(location.href);
+            }else{//url存在表示处理url
+                curHash = splitHash(url);
+            }
+            curHash[e] = (f == undefined ? "" : f);
+            addHash(curHash,url);
+        }, removeHash: function (e,url) {
+            var curHash=null,arrDel=[];
+            if(!url){
+                curHash = hashObj = splitHash(location.href);
+            }else{//url存在表示处理url
+                curHash = splitHash(url);
+            }
+            if(typeof e == "string"){
+                delete (curHash[e]);
+            }else if(e instanceof RegExp){
+                for(var key in curHash){
+                    if(key.match(e) && key.match(e)[0]==key){
+                        arrDel.push({name:key,value:curHash[key]});
+                        delete curHash[key];
+                    }
+                }
+            }
+            return addHash(curHash,url,arrDel);
+        }, clearHash: function (url) {
+            if(url){
+                if(url.indexOf("#")==-1){
+                    return url;
+                }else{
+                    return url.substr(0,url.indexOf("#"));
+                }
+            }else{
+                location.hash = "";
+                hashObj = {}
+            }
+        },
+        getHashObj:function(str){
+            return splitHash(str||location.href);
+        }
     };
-    function splitHash() {
-        var arr_part = location.hash.substr(1).split("|").filter(function (part, f) {
+    function splitHash(url) {
+        var ind = url.indexOf("#");
+        if(ind==-1){
+            return {};
+        }
+        var arr_part = url.substr(ind+1,url.length).split("|").filter(function (part, f) {
             if (!!part) {
                 return part
             }
         });
-        hashObj = {};
+        var resObj = {};
         arr_part.forEach(function (h, g) {
             var f = h.split("=");
-            hashObj[f[0]] = f[1] || null
-        })
+            resObj[f[0]] = f[1] || null
+        });
+        return resObj;
     }
-
-    function addHash() {
+    function addHash(curHash,url,arrDel) {
         var str = "";
-        for (var key in hashObj) {
+        for (var key in curHash) {
             if (!!str) {
                 str += "|"
             }
-            str += (key + "=" + hashObj[key])
+            str += (key + "=" + curHash[key])
         }
-        location.hash = str
+        if(url){
+            if(url.indexOf("#")!=-1){
+                url = url.substr(0,url.indexOf("#"));
+            }
+            if(str){
+                return {url:url+"#"+str,dels:arrDel};
+            }else{
+                return {url:url,dels:arrDel};
+            }
+        }else{
+            location.hash = str
+        }
     }
 })($);
 /* =========================================================

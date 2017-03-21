@@ -3,11 +3,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,textarea,select,optgr
   margin: 0;
   padding: 0;
   outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 ul,li{list-style:none;}
 .fade {
   opacity: 0;
-  transition: opacity 0.1s linear,transform 400ms ease-in-out;
+  transition: opacity 200ms linear,transform 200ms ease-out;
 }
 .fade.in{opacity: 1;}
 .modal{

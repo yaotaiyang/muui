@@ -8,26 +8,11 @@
     <script src="../dist/js/zepto.min.js"></script>
     <script src="../dist/js/template.js"></script>
     <script src="../dist/js/wuui.min.js"></script>
+    <style>
+        button{width: 200px;height: 44px;background-color: #ff8000;}
+    </style>
 </head>
 <body>
-    <button onclick="$('.modal').modal()">actionsheet</button>
-    <div class="modal wuui-actionsheet fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <ul class="wuui-actionsheet-ul">
-                        <li data-ac="active" data-type="Assign" class="wuui-border-1px">发起协商</li>
-                        <li data-ac="active" data-type="Transfer" class="wuui-border-1px">授权交办</li>
-                        <li data-ac="active" data-type="Cancel" class="wuui-border-1px">作废</li>
-                        <li data-ac="active" data-type="Reject" class="wuui-border-1px">终止</li>
-                        <li data-ac="active" data-type="Circulate" class="wuui-border-1px">传阅</li>
-                    </ul>
-                    <ul class="wuui-actionsheet-ul">
-                        <li data-dismiss="modal" data-ac="active" class="btn-li border-1px">取消</li>
-                    </ul>
-                </div>
-            </div><!-- /.modal-content -->
-        </div>
-    </div>
+    <button onclick="$.actionsheet({list:[{text:'aaa'},{text:'bbb'}]})">actionsheet</button>
 </body>
 </html>
