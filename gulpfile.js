@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 gulp.task('css', function () {
     //编译src目录下的所有less文件
     //除了reset.less和test.less（**匹配src/less的0个或多个子文件夹）
-    gulp.src(['less/*.less'])
+    gulp.src(['less/base.less','less/*.less'])
         .pipe(less())
         .pipe(autoprefixer({
             browsers: ['last 2 versions','Safari >0', 'Explorer >0', 'Edge >0', 'Opera >0', 'Firefox >=20'],//last 2 versions- 主流浏览器的最新两个版本
@@ -26,7 +26,7 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task('minifyjs',function() {
-    return gulp.src(['js/*.js','!js/wuui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
+    return gulp.src(['js/base.js','js/*.js','!js/wuui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
         .pipe(concat('wuui.js'))    //合并所有js到wuui.js
         .pipe(gulp.dest('js'))       //输出到文件夹
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
@@ -39,7 +39,7 @@ gulp.task('copy',['css','minifyjs'],function(){
 });
 gulp.task('connect', function () {
     connect.server({
-        port: 9900,
+        port: 9901,
         root: './',
         livereload: false
     });

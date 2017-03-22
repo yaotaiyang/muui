@@ -9,10 +9,15 @@
     <script src="../dist/js/template.js"></script>
     <script src="../dist/js/wuui.min.js"></script>
     <style>
-        button{width: 200px;height: 44px;background-color: #ff8000;}
+        body{padding: 10px;}
+        .btn{margin: 5px 0;}
     </style>
 </head>
 <body>
-    <button onclick="$.actionsheet({list:[{text:'aaa'},{text:'bbb'}]})">actionsheet</button>
+    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.actionsheet({list:[{text:'aaa'},{text:'bbb'}]})">actionsheet</button>
+    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.dialog({'title':'xxxxxx'})">dialog</button>
+    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.toast('哈哈,测试')">toast</button>
+    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.loading({text:'加载中…',time:1000})">loading</button>
+    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.pickerpage()">pickerpage</button>
 </body>
 </html>
