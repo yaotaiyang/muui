@@ -1,8 +1,8 @@
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.toast = function(option){
-    var source = '<div class="modal wuui-fixed-center wuui-toast fade" style="width:{{width}}">\
+;muui.toast = function(option){
+    var source = '<div class="modal muui-fixed-center muui-toast fade" style="width:{{width}}">\
             <div class="modal-body">\
                 <p>{{text}}</p>\
             </div>\

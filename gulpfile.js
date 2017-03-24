@@ -20,21 +20,21 @@ gulp.task('css', function () {
             //-webkit-transform: rotate(45deg);
             remove:true //是否去掉不必要的前缀 默认：true
         }))
-        .pipe(concat('wuui.css'))
+        .pipe(concat('muui.css'))
         .pipe(cssmin())
         .pipe(rename({suffix:'.min'})) //设置压缩文件名
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task('minifyjs',function() {
-    return gulp.src(['js/base.js','js/*.js','!js/wuui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
-        .pipe(concat('wuui.js'))    //合并所有js到wuui.js
+    return gulp.src(['js/base.js','js/*.js','!js/muui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
+        .pipe(concat('muui.js'))    //合并所有js到muui.js
         .pipe(gulp.dest('js'))       //输出到文件夹
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
-        //.pipe(uglify())    //压缩
+        .pipe(uglify())    //压缩
         .pipe(gulp.dest('dist/js'));  //输出
 });
 gulp.task('copy',['css','minifyjs'],function(){
-    return gulp.src(['js/template.js','js/zepto.min.js','js/wuui.js'])
+    return gulp.src(['js/template.js','js/zepto.min.js','js/muui.js'])
         .pipe(gulp.dest('dist/js'));
 });
 gulp.task('connect', function () {

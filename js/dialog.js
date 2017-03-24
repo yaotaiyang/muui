@@ -1,8 +1,8 @@
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.dialog = function(option){
-    var source = '<div class="modal wuui-dialog wuui-fixed-center fade" style="width:{{width}}">\
+;muui.dialog = function(option){
+    var source = '<div class="modal muui-dialog muui-fixed-center fade" style="width:{{width}}">\
         <div class="modal-header">\
             <h3>{{title}}</h3>\
         </div>\
@@ -11,7 +11,7 @@
             </div>\
         <div class="modal-footer">\
         {{each btns as btn key}}\
-            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn wuui-border" data-ac="click-active" {{if btn.close}}data-dismiss="modal"{{/if}}>{{btn.text}}</div>\
+            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" data-ac="click-active" {{if btn.close}}data-dismiss="modal"{{/if}}>{{btn.text}}</div>\
         {{/each}}\
         </div>\
     </div>';

@@ -2,9 +2,9 @@
  * Created by yaoxy on 2017/3/22.
  * 滑动选择页
  */
-wuui.pickerpage=function(option){
+muui.pickerpage=function(option){
     var opt = $.extend({},option);
-    var source = '<div class="modal wuui-pickerpage fade">\
+    var source = '<div class="modal muui-pickerpage fade">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body">\

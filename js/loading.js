@@ -1,11 +1,11 @@
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.loading = function(option){
-    var source = '<div class="modal wuui-fixed-center wuui-loading fade" style="width:{{width}}">\
+;muui.loading = function(option){
+    var source = '<div class="modal muui-fixed-center muui-loading fade" style="width:{{width}}">\
             <div class="modal-body">\
                 <div class="align-center">\
-                <i class="wuui-loading-icon"></i>\
+                <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
                 </div>\
             </div>\

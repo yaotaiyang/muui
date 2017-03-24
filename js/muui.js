@@ -2,7 +2,7 @@
  * Created by yaoxy on 2017/3/17.
  */
 (function(){
-    window.wuui= window.wuui||{};
+    window.muui= window.muui||{};
     $.guid=function(){//生产guid
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -23,17 +23,17 @@
  * Created by yaoxy on 2017/3/20.
  * 按钮组建底部弹出按钮
  */
-;wuui.actionsheet = function(option){
-    var source = '<div class="modal wuui-actionsheet fade">\
+;muui.actionsheet = function(option){
+    var source = '<div class="modal muui-actionsheet fade">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body">\
-                    <ul class="wuui-actionsheet-ul">\
+                    <ul class="muui-actionsheet-ul">\
                     \{{each list as item key}}\
-                    <li data-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="wuui-border wuui-ui-li">{{item.text}}</li>\
+                    <li data-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="muui-border muui-ui-li">{{item.text}}</li>\
                     {{/each}}\
                     </ul>\
-                    <ul class="wuui-actionsheet-ul">\
+                    <ul class="muui-actionsheet-ul">\
                         <li data-dismiss="modal" data-ac="click-active" class="btn-li border-1px">取消</li>\
                     </ul>\
                 </div>\
@@ -92,32 +92,32 @@ $(function(){
 /**
  * Created by yaoxy on 2017/3/23.
  */
-wuui.alert=function(option){
+muui.alert=function(option){
     if(typeof option == "string"){
         option = {content:option};
     }
     option = $.extend({
         "btns":[{text:"确定",type:"default",close:"1"}]
     },option);
-    wuui.dialog(option);
+    muui.dialog(option);
 }
 /**
  * Created by yaoxy on 2017/3/23.
  */
-wuui.confirm=function(option){
+muui.confirm=function(option){
     if(typeof option == "string"){
         option = {content:option};
     }
     option = $.extend({
        "title":"确定"
     },option);
-    wuui.dialog(option);
+    muui.dialog(option);
 }
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.dialog = function(option){
-    var source = '<div class="modal wuui-dialog wuui-fixed-center fade" style="width:{{width}}">\
+;muui.dialog = function(option){
+    var source = '<div class="modal muui-dialog muui-fixed-center fade" style="width:{{width}}">\
         <div class="modal-header">\
             <h3>{{title}}</h3>\
         </div>\
@@ -126,7 +126,7 @@ wuui.confirm=function(option){
             </div>\
         <div class="modal-footer">\
         {{each btns as btn key}}\
-            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn wuui-border" data-ac="click-active" {{if btn.close}}data-dismiss="modal"{{/if}}>{{btn.text}}</div>\
+            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" data-ac="click-active" {{if btn.close}}data-dismiss="modal"{{/if}}>{{btn.text}}</div>\
         {{/each}}\
         </div>\
     </div>';
@@ -253,11 +253,11 @@ wuui.confirm=function(option){
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.loading = function(option){
-    var source = '<div class="modal wuui-fixed-center wuui-loading fade" style="width:{{width}}">\
+;muui.loading = function(option){
+    var source = '<div class="modal muui-fixed-center muui-loading fade" style="width:{{width}}">\
             <div class="modal-body">\
                 <div class="align-center">\
-                <i class="wuui-loading-icon"></i>\
+                <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
                 </div>\
             </div>\
@@ -288,8 +288,8 @@ wuui.confirm=function(option){
  */
 $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回问题
     if(window.performance&&window.performance.navigation&&window.performance.navigation.type==1){ //刷新
-        if($.Hash.hasHash(/wuuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
-            var resObj = $.Hash.removeHash(/wuuimodal.+/,location.href);
+        if($.Hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
+            var resObj = $.Hash.removeHash(/muuimodal.+/,location.href);
             if(resObj.dels && resObj.dels.length){
                 history.go(-resObj.dels.length);//历史回退
             }
@@ -303,7 +303,7 @@ $.fn.destory = function(){
     }
 };
 $.fn.mmodal = function(option){
-    var $html = $(this),guid= $.guid(),modal_id = "wuuimodal-"+guid;
+    var $html = $(this),guid= $.guid(),modal_id = "muuimodal-"+guid;
     var opt = $.extend({
         history:true,
         container:"body"
@@ -585,9 +585,9 @@ $.fn.mmodal = function(option){
  * Created by yaoxy on 2017/3/22.
  * 滑动选择页
  */
-wuui.pickerpage=function(option){
+muui.pickerpage=function(option){
     var opt = $.extend({},option);
-    var source = '<div class="modal wuui-pickerpage fade">\
+    var source = '<div class="modal muui-pickerpage fade">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body">\
@@ -637,6 +637,8 @@ $.fn.scroll = function (options) {
     }
     function funcMove(e){
         if(start===null){return};
+        e.preventDefault();
+        e.stopPropagation();
         setTransition(0);
         var curY = getY(e);
         trans += curY-moveEnd;
@@ -662,8 +664,6 @@ $.fn.scroll = function (options) {
         start = null;
     }
     function getY(e){
-        e.stopPropagation();
-        e.preventDefault();
         if(e.touches){
             return e.changedTouches[0].pageY;
         }else{
@@ -688,13 +688,23 @@ $.fn.scroll = function (options) {
         });
     };
 };
+/**
+ * Created by yaoxy on 2017/3/24.
+ */
+$(function(){
+    $("body").on("focus",".muui-searchbar .search-input",function(){
+        $(this).closest("form").addClass("muui-focus");
+    }).on("blur",".muui-searchbar .search-input",function(){
+        $(this).closest("form").removeClass("muui-focus");
+    });
+});
 /*!art-template - Template Engine | http://aui.github.com/artTemplate/*/
 !function(){function a(a){return a.replace(t,"").replace(u,",").replace(v,"").replace(w,"").replace(x,"").split(/^$|,+/)}function b(a){return"'"+a.replace(/('|\\)/g,"\\$1").replace(/\r/g,"\\r").replace(/\n/g,"\\n")+"'"}function c(c,d){function e(a){return m+=a.split(/\n/).length-1,k&&(a=a.replace(/[\n\r\t\s]+/g," ").replace(/<!--.*?-->/g,"")),a&&(a=s[1]+b(a)+s[2]+"\n"),a}function f(b){var c=m;if(j?b=j(b,d):g&&(b=b.replace(/\n/g,function(){return m++,"$line="+m+";"})),0===b.indexOf("=")){var e=l&&!/^=[=#]/.test(b);if(b=b.replace(/^=[=#]?|[\s;]*$/g,""),e){var f=b.replace(/\s*\([^\)]+\)/,"");n[f]||/^(include|print)$/.test(f)||(b="$escape("+b+")")}else b="$string("+b+")";b=s[1]+b+s[2]}return g&&(b="$line="+c+";"+b),r(a(b),function(a){if(a&&!p[a]){var b;b="print"===a?u:"include"===a?v:n[a]?"$utils."+a:o[a]?"$helpers."+a:"$data."+a,w+=a+"="+b+",",p[a]=!0}}),b+"\n"}var g=d.debug,h=d.openTag,i=d.closeTag,j=d.parser,k=d.compress,l=d.escape,m=1,p={$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1},q="".trim,s=q?["$out='';","$out+=",";","$out"]:["$out=[];","$out.push(",");","$out.join('')"],t=q?"$out+=text;return $out;":"$out.push(text);",u="function(){var text=''.concat.apply('',arguments);"+t+"}",v="function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);"+t+"}",w="'use strict';var $utils=this,$helpers=$utils.$helpers,"+(g?"$line=0,":""),x=s[0],y="return new String("+s[3]+");";r(c.split(h),function(a){a=a.split(i);var b=a[0],c=a[1];1===a.length?x+=e(b):(x+=f(b),c&&(x+=e(c)))});var z=w+x+y;g&&(z="try{"+z+"}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:"+b(c)+".split(/\\n/)[$line-1].replace(/^[\\s\\t]+/,'')};}");try{var A=new Function("$data","$filename",z);return A.prototype=n,A}catch(B){throw B.temp="function anonymous($data,$filename) {"+z+"}",B}}var d=function(a,b){return"string"==typeof b?q(b,{filename:a}):g(a,b)};d.version="3.0.0",d.config=function(a,b){e[a]=b};var e=d.defaults={openTag:"<%",closeTag:"%>",escape:!0,cache:!0,compress:!1,parser:null},f=d.cache={};d.render=function(a,b){return q(a,b)};var g=d.renderFile=function(a,b){var c=d.get(a)||p({filename:a,name:"Render Error",message:"Template not found"});return b?c(b):c};d.get=function(a){var b;if(f[a])b=f[a];else if("object"==typeof document){var c=document.getElementById(a);if(c){var d=(c.value||c.innerHTML).replace(/^\s*|\s*$/g,"");b=q(d,{filename:a})}}return b};var h=function(a,b){return"string"!=typeof a&&(b=typeof a,"number"===b?a+="":a="function"===b?h(a.call(a)):""),a},i={"<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","&":"&#38;"},j=function(a){return i[a]},k=function(a){return h(a).replace(/&(?![\w#]+;)|[<>"']/g,j)},l=Array.isArray||function(a){return"[object Array]"==={}.toString.call(a)},m=function(a,b){var c,d;if(l(a))for(c=0,d=a.length;d>c;c++)b.call(a,a[c],c,a);else for(c in a)b.call(a,a[c],c)},n=d.utils={$helpers:{},$include:g,$string:h,$escape:k,$each:m};d.helper=function(a,b){o[a]=b};var o=d.helpers=n.$helpers;d.onerror=function(a){var b="Template Error\n\n";for(var c in a)b+="<"+c+">\n"+a[c]+"\n\n";"object"==typeof console&&console.error(b)};var p=function(a){return d.onerror(a),function(){return"{Template Error}"}},q=d.compile=function(a,b){function d(c){try{return new i(c,h)+""}catch(d){return b.debug?p(d)():(b.debug=!0,q(a,b)(c))}}b=b||{};for(var g in e)void 0===b[g]&&(b[g]=e[g]);var h=b.filename;try{var i=c(a,b)}catch(j){return j.filename=h||"anonymous",j.name="Syntax Error",p(j)}return d.prototype=i.prototype,d.toString=function(){return i.toString()},h&&b.cache&&(f[h]=d),d},r=n.$each,s="break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined",t=/\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|[\s\t\n]*\.[\s\t\n]*[$\w\.]+/g,u=/[^\w$]+/g,v=new RegExp(["\\b"+s.replace(/,/g,"\\b|\\b")+"\\b"].join("|"),"g"),w=/^\d[^,]*|,\d[^,]*/g,x=/^,+|,+$/g;e.openTag="{{",e.closeTag="}}";var y=function(a,b){var c=b.split(":"),d=c.shift(),e=c.join(":")||"";return e&&(e=", "+e),"$helpers."+d+"("+a+e+")"};e.parser=function(a,b){a=a.replace(/^\s/,"");var c=a.split(" "),e=c.shift(),f=c.join(" ");switch(e){case"if":a="if("+f+"){";break;case"else":c="if"===c.shift()?" if("+c.join(" ")+")":"",a="}else"+c+"{";break;case"/if":a="}";break;case"each":var g=c[0]||"$data",h=c[1]||"as",i=c[2]||"$value",j=c[3]||"$index",k=i+","+j;"as"!==h&&(g="[]"),a="$each("+g+",function("+k+"){";break;case"/each":a="});";break;case"echo":a="print("+f+");";break;case"print":case"include":a=e+"("+c.join(",")+");";break;default:if(-1!==f.indexOf("|")){var l=b.escape;0===a.indexOf("#")&&(a=a.substr(1),l=!1);for(var m=0,n=a.split("|"),o=n.length,p=l?"$escape":"$string",q=p+"("+n[m++]+")";o>m;m++)q=y(q,n[m]);a="=#"+q}else a=d.helpers[e]?"=#"+e+"("+c.join(",")+");":"="+a}return a},"function"==typeof define?define(function(){return d}):"undefined"!=typeof exports?module.exports=d:this.template=d}();
 /**
  * Created by yaoxy on 2017/3/22.
  */
-;wuui.toast = function(option){
-    var source = '<div class="modal wuui-fixed-center wuui-toast fade" style="width:{{width}}">\
+;muui.toast = function(option){
+    var source = '<div class="modal muui-fixed-center muui-toast fade" style="width:{{width}}">\
             <div class="modal-body">\
                 <p>{{text}}</p>\
             </div>\

@@ -4,8 +4,8 @@
  */
 $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回问题
     if(window.performance&&window.performance.navigation&&window.performance.navigation.type==1){ //刷新
-        if($.Hash.hasHash(/wuuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
-            var resObj = $.Hash.removeHash(/wuuimodal.+/,location.href);
+        if($.Hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
+            var resObj = $.Hash.removeHash(/muuimodal.+/,location.href);
             if(resObj.dels && resObj.dels.length){
                 history.go(-resObj.dels.length);//历史回退
             }
@@ -19,7 +19,7 @@ $.fn.destory = function(){
     }
 };
 $.fn.mmodal = function(option){
-    var $html = $(this),guid= $.guid(),modal_id = "wuuimodal-"+guid;
+    var $html = $(this),guid= $.guid(),modal_id = "muuimodal-"+guid;
     var opt = $.extend({
         history:true,
         container:"body"

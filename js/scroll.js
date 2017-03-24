@@ -27,6 +27,8 @@ $.fn.scroll = function (options) {
     }
     function funcMove(e){
         if(start===null){return};
+        e.preventDefault();
+        e.stopPropagation();
         setTransition(0);
         var curY = getY(e);
         trans += curY-moveEnd;
@@ -52,8 +54,6 @@ $.fn.scroll = function (options) {
         start = null;
     }
     function getY(e){
-        e.stopPropagation();
-        e.preventDefault();
         if(e.touches){
             return e.changedTouches[0].pageY;
         }else{
