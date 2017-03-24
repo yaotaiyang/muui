@@ -5,11 +5,21 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,textarea,select,optgr
   outline: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+input,textarea{border:none;outline: none;}
+ul,li{list-style:none;}
 body{color:#333;font-size:14px;}
 .cus-color{color:@cus-color}
-.align-center{text-align: center;}
-.align-right{text-align: right;}
-ul,li{list-style:none;}
+.align-center{text-align: center!important;}
+.align-right{text-align: right!important;}
+.align-middle{vertical-align: middle!important;}
+.align-top{vertical-align: top!important;}
+.wuui-danger{color:#E64340!important;}
+.wuui-warning{color:#faa732!important;}
+.wuui-success{color:#5bb75b!important;}
+.wuui-info{color:#49afcd!important;}
+.wuui-tag{color:#fff;font-size: 12px;border-radius: 0;}
+.wuui-gray{color:#ccc!important;}
+.cls:after{content:"";display: block;height: 0;clear: both;line-height: 0;overflow: hidden;}
 .inline-block{display: inline-block;}
 [data-ac='click-active']{position:relative;}
 .click-active[data-ac='click-active']:before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background-color: rgba(0,0,0,0.1)}
@@ -26,3 +36,11 @@ ul,li{list-style:none;}
   border-radius: 5px;
   border-style:solid;
   border-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAWVJREFUeNrsls1Kw0AQx5P1C6ngI4jJoWAV+xAeKnoRX6Gea9W3ED8OHiz4GoIHH0Jp9ZSI4ivYg5E2/qadheBHTXFz68CPLNnNf2Z2Z3fjp2nqicVx7KmtQB02YRnmvNH2Dk9wA1dhGD5mO02mPQsX0IZX2IFF8H8CoQE6Zle/aRPoJcxbUV8y4IWIX8MDHED/j6g9xL+9Q0cCPoaqzABjEpvBmYrv5xEf4bQPhzoLp4MMoiiq8LzXue6NIfZrH5lM6dqsG13Qo3HEczjvqWZdHNS0AlybaNbEQaBl5tpEMzBanolrdakg0TZewTZxMHHgxkGie8GpcR4t8HgzdscVEPwSvBh7ZhTgYANu5bhepXFX0HFdNQzs0GjBicPoRasl2raKmiAXz/l/KkuuTBDxNdUciunJtwXT8AENKMNMDtESVKCh35ZgWzWHl/6X3xbJZE8XPsjhpAvPsqD629LJdn4KMABzy3VSREKSDAAAAABJRU5ErkJggg==') 10 10 stretch;}
+
+@font-face {
+  font-family: "wuuifont";
+  src:url('../font/iconfont.woff?t=1490316960935') format('woff'), /* chrome, firefox */
+  url('../font/iconfont.ttf?t=1490316960935') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg?t=1490316960935#iconfont') format('svg'); /* iOS 4.1- */
+}
+.wuui-font{font-style:normal;font-size:1.5rem;font-family: wuuifont;color:@cus-color}

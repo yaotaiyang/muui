@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>表单</title>
+    <link rel="stylesheet" href="../dist/css/wuui.min.css">
+    <script src="../dist/js/zepto.min.js"></script>
+    <script src="../dist/js/template.js"></script>
+    <script src="../dist/js/wuui.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <form class="wuui-form" action="">
+        <dt>输入框</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        姓名
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入姓名">
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        电话
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="电话">
+                    </div>
+                    <div class="wuui-cell align-middle align-center" style="width:5.4em;" data-ac="click-active">
+                       <div class="cus-color" >发送验证码</div>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        年龄
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入年龄">
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <i class="wuui-font wuui-danger">&#xe72a;</i>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入地址">
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <i class="wuui-font wuui-warning">&#xe72d;</i>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        地址
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入邮箱">
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <i class="wuui-font wuui-success">&#xe731;</i>
+                    </div>
+                </label>
+            </li>
+        </dl>
+        <dt>输入框</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入姓名">
+                    </div>
+                </label>
+            </li>
+        </dl>
+        <dt>单选</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        这里是单选(男)
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <input name="sex" type="radio">
+                        <i class="wuui-font"></i>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        这里是单选(女)
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <input name="sex" type="radio">
+                        <i class="wuui-font"></i>
+                    </div>
+                </label>
+            </li>
+        </dl>
+        <dt>复选框</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        这里是多选(地址1)
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <input name="address" type="checkbox">
+                        <i class="wuui-font"></i>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        这里是多选(地址2)
+                    </div>
+                    <div class="wuui-cell align-middle feedback">
+                        <input name="address" type="checkbox">
+                        <i class="wuui-font"></i>
+                    </div>
+                </label>
+            </li>
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        图片上传
+                    </div>
+                </label>
+                <div class="wuui-img-upload">
+                    <ul class="cls">
+                        <li style="background-image: url('images/img_default.png')" class="wuui-img-div"></li>
+                        <li style="background-image: url('images/img_default.png')" class="wuui-img-div"></li>
+                        <li style="background-image: url('images/img_default.png')" class="wuui-img-div"></li>
+                        <li style="background-image: url('images/img_default.png')" class="wuui-img-div"></li>
+                        <li class="wuui-img-div">
+                            <div class="wuui-img-add">
+                                <i class="wuui-font">&#xe727;</i>
+                                <input name="upload" type="file">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </dl>
+        <dt>输入框2</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        <input type="text" placeholder="请输入姓名">
+                    </div>
+                </label>
+            </li>
+        </dl>
+        <dt>文本域</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <label class="wuui-table">
+                    <div class="wuui-cell align-middle">
+                        <textarea placeholder="请输入内容" rows="5"></textarea>
+                    </div>
+                    <div class="wuui-cell feedback">
+                        <i class="wuui-font wuui-warning">&#xe72b;</i>
+                    </div>
+                </label>
+            </li>
+        </dl>
+        <dt>表单展示</dt>
+        <dl class="wuui-list wuui-border">
+            <li class="wuui-item wuui-border">
+                <div class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        年龄
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        这里是表单内容展示
+                    </div>
+                </div>
+            </li>
+            <li class="wuui-item wuui-border">
+                <div class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        性别
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        男
+                    </div>
+                </div>
+            </li>
+            <li class="wuui-item wuui-border">
+                <div class="wuui-table">
+                    <div class="wuui-cell align-middle wuui-label">
+                        地址
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        光谷软件园
+                    </div>
+                </div>
+            </li>
+            <li class="wuui-item wuui-border">
+                <div class="wuui-table">
+                    <div class="wuui-cell align-top wuui-label">
+                        地址
+                    </div>
+                    <div class="wuui-cell align-middle">
+                        我有个table要获取数据,当列中显示的是中文是,不管有多少个中文字符,每列都会...中文得到的数据超过了列宽它会换行显示。英文,数字的就不会。
+                    </div>
+                </div>
+            </li>
+        </dl>
+        <div class="wuui-agree wuui-gray"><label>
+            <input type="checkbox"><i class="wuui-font"></i>
+            阅读并同意 <span class="cus-color">yaotaiyang</span>
+        </label>
+        </div>
+        <div data-ac="click-active" data-type="primary" class="btn">提交</div>
+    </form>
+</body>
+</html>
