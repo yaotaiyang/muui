@@ -8,36 +8,7 @@ wuui.pickerpage=function(option){
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body">\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试<br>\
-                   单页滑动测试1<br>\
-                   单页滑动测试2<br>\
-                   单页滑动测试3<br>\
-                   单页滑动测试4<br>\
-                   单页滑动测试5<br>\
-                   单页滑动测试6<br>\
+                   {{#html}}\
                 </div>\
             </div>\
         </div>\
@@ -45,9 +16,11 @@ wuui.pickerpage=function(option){
     var opt = $.extend({
         container:"body",
         "backdrop":false,
-        history:true//默认hash处理,接管浏览器返回
+        "html":"pickerPage 内容",
+        "history":true//默认hash处理,接管浏览器返回
     },option);
-    var render = template.compile(source),$html = $(render({list:opt.list}));
+    var render = template.compile(source),$html = $(render(opt));
     $html.mmodal(opt);
+    $html.find(".modal-dialog").scroll();
     return $html;
 }

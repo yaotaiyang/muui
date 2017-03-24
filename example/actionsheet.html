@@ -14,10 +14,12 @@
     </style>
 </head>
 <body>
-    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.actionsheet({list:[{text:'aaa'},{text:'bbb'}]})">actionsheet</button>
-    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.dialog({'title':'xxxxxx'})">dialog</button>
-    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.toast('哈哈,测试')">toast</button>
-    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.loading({text:'加载中…',time:1000})">loading</button>
-    <button data-ac="click-active" data-type="primary" class="btn wuui-border-radius" onclick="wuui.pickerpage()">pickerpage</button>
+    <div data-ac="click-active" data-type="primary" class="btn" onclick="wuui.actionsheet({list:[{text:'aaa'},{text:'bbb'}]})">actionsheet</div>
+    <div data-ac="click-active" data-type="default" class="btn" onclick="wuui.dialog({'title':'xxxxxx'})">dialog</div>
+    <div data-ac="click-active" data-type="danger" class="btn" onclick="wuui.alert('xxxxxx')">alert</div>
+    <div data-ac="click-active" data-type="success" class="btn" onclick="wuui.confirm('xxxxxx')">confrim</div>
+    <div data-ac="click-active" data-type="warning" class="btn" onclick="wuui.toast('哈哈,测试')">toast</div>
+    <div data-ac="click-active" data-type="info" class="btn" onclick="wuui.loading({text:'加载中…',time:1000})">loading</div>
+    <div data-ac="click-active" data-type="primary" class="btn" onclick="wuui.pickerpage()">pickerpage</div>
 </body>
 </html>

@@ -12,6 +12,12 @@ $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回�
         }
     }
 });
+$.fn.destory = function(){
+    var $html = $(this);
+    if($html.data("modal")){
+        $html.modal('hide');
+    }
+};
 $.fn.mmodal = function(option){
     var $html = $(this),guid= $.guid(),modal_id = "wuuimodal-"+guid;
     var opt = $.extend({

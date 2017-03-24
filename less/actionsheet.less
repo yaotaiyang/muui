@@ -1,3 +1,4 @@
+@import "base";
 .wuui-actionsheet{
   position: fixed;
   left:0;bottom:0;width:100%;
@@ -7,7 +8,8 @@
 .wuui-actionsheet-ul li{line-height: 2em;padding: 7px 12px;
   text-align: center;
   border-bottom-width: 1px;
-  font-size: 16px;}
-.wuui-actionsheet-ul li.active{background-color: #d9d9d9;}
+  font-size: 16px;
+  color:@cus-color
+}
 .wuui-actionsheet-ul li:last-child{border-bottom-width: 0;}
 .wuui-actionsheet.in{transform: translate3d(0,0,0);}

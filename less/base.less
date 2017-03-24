@@ -1,49 +1,26 @@
-@cus-color:#fe9440;/**颜色,主要图标,按钮等**/
+@cus-color:#06c1ae;/**颜色,主要图标,按钮等**/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,textarea,select,optgroup,option,fieldset,legend,p,blockquote,th,td{
   margin: 0;
   padding: 0;
   outline: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+body{color:#333;font-size:14px;}
+.cus-color{color:@cus-color}
 .align-center{text-align: center;}
-.btn{display: inline-block;}
-.btn-primary,.btn[data-type='primary']{background-color: @cus-color;color:#fff;}
+.align-right{text-align: right;}
 ul,li{list-style:none;}
-.fade {
-  opacity: 0;
-  transition: opacity 200ms linear,transform 200ms ease-out;
-}
-.fade.in{opacity: 1;}
-.modal{
-  position: fixed;
-  z-index: 1050;
-  display: none;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  outline: 0;
-}
-.modal-backdrop.fade {
-  opacity: 0;
-}
-.modal-backdrop.in {
-  opacity: 0.5;
-}
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
-}
+.inline-block{display: inline-block;}
 [data-ac='click-active']{position:relative;}
 .click-active[data-ac='click-active']:before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background-color: rgba(0,0,0,0.1)}
 .click-active.wuui-border-radius[data-ac='click-active']:before{top:-5px;bottom:-5px;left:-5px;right:-5px;border-radius: 4px;}
+.line-clamp-1{display: -webkit-box;-webkit-box-orient:vertical;overflow: hidden;-webkit-line-clamp:1;}
+.line-clamp-2{display: -webkit-box;-webkit-box-orient:vertical;overflow: hidden;-webkit-line-clamp:2;}
+.line-clamp-3{display: -webkit-box;-webkit-box-orient:vertical;overflow: hidden;-webkit-line-clamp:3;}
+.line-clamp-4{display: -webkit-box;-webkit-box-orient:vertical;overflow: hidden;-webkit-line-clamp:4;}
 .wuui-fixed-center{position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);background-color: rgba(0,0,0,0.7);width:80%;border-radius:4px;}
 .wuui-fixed-center p{text-align: left;}
 .wuui-fixed-center .modal-body{padding:8px 12px;color:#fff;}
-.wuui-hide{display: none;}
 .wuui-border{border:0;border-style:solid;border-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACRJREFUeNpivHv37n8GLIAFSjOiif9nYsABSJeA2YHhAIAAAwCMHQWlmEwsxgAAAABJRU5ErkJggg==') 2 2 stretch;}
 .wuui-border-radius{border-width: 5px;
   border-radius: 5px;
