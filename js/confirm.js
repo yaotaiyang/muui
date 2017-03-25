@@ -8,5 +8,5 @@ muui.confirm=function(option){
     option = $.extend({
        "title":"确定"
     },option);
-    muui.dialog(option);
+    return muui.dialog(option);
 }

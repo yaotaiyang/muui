@@ -5,6 +5,7 @@ $.fn.scroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
         onChange:function(){},// onChange回调
+        bounce:false,//是否有回弹
         position:0,
         inertia:200  //惯性大小
     }, options);
@@ -68,8 +69,13 @@ $.fn.scroll = function (options) {
     };
     function setTranslate(diff,callback){
         var dy = diff,bouce = 4;
-        if(dy>0){dy = dy/bouce};
-        if(dy < height-scrollHeight){dy =height - scrollHeight + (dy-(height - scrollHeight))/bouce};
+        if(opt.bounce){
+            if(dy>0){dy = dy/bouce};
+            if(dy < height-scrollHeight){dy =height - scrollHeight + (dy-(height - scrollHeight))/bouce};
+        }else{
+            if(dy>0){dy = 0};
+            if(dy < height-scrollHeight){dy = height-scrollHeight};
+        }
         return $scroll.css({
             '-webkit-transform': 'translate3d(0, '+dy+'px, 0)',
             'transform': 'translate3d(0, '+dy+'px, 0)'

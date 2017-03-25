@@ -3,7 +3,7 @@
  */
 (function ($) {
     var hashObj = {};
-    $.Hash = {
+    muui.hash = {
         hasHash: function (e,url) {
             hashObj = splitHash(url || location.href);
             if (typeof e == 'string' && !!hashObj[e]) {

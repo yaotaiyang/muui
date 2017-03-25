@@ -26,11 +26,11 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task('minifyjs',function() {
-    return gulp.src(['js/base.js','js/*.js','!js/muui.js','!js/zepto.min.js','js/template.js'])      //需要操作的文件
+    return gulp.src(['js/base.js','js/*.js','!js/muui.js','!js/zepto.min.js'])      //需要操作的文件
         .pipe(concat('muui.js'))    //合并所有js到muui.js
         .pipe(gulp.dest('js'))       //输出到文件夹
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
-        .pipe(uglify())    //压缩
+        //.pipe(uglify())    //压缩
         .pipe(gulp.dest('dist/js'));  //输出
 });
 gulp.task('copy',['css','minifyjs'],function(){

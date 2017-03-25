@@ -3,11 +3,9 @@
  */
 ;muui.loading = function(option){
     var source = '<div class="modal muui-fixed-center muui-loading fade" style="width:{{width}}">\
-            <div class="modal-body">\
-                <div class="align-center">\
+            <div class="modal-body align-center">\
                 <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
-                </div>\
             </div>\
     </div>';
     if(typeof option =="string"){//如果是字符串
@@ -17,7 +15,7 @@
         "container":"body",
         "width":"auto",
         "text":"加载中…",
-        "backdrop":"",
+        "backdrop":"static",
         "time":"",
         "history":false//不接管浏览器返回
     },option);

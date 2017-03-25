@@ -4,7 +4,7 @@
 $(function(){
     $("body").on("focus",".muui-searchbar .search-input",function(){
         $(this).closest("form").addClass("muui-focus");
-    }).on("blur",".muui-searchbar .search-input",function(){
-        $(this).closest("form").removeClass("muui-focus");
+    }).on("click",".muui-searchbar .cancel",function(){
+        $(this).closest("form").removeClass("muui-focus").find(".search-input").val("");
     });
 });

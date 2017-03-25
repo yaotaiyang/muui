@@ -8,5 +8,5 @@ muui.alert=function(option){
     option = $.extend({
         "btns":[{text:"确定",type:"default",close:"1"}]
     },option);
-    muui.dialog(option);
+    return muui.dialog(option);
 }

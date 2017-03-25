@@ -1,9 +1,9 @@
 /**
- * Created by yaoxy on 2017/3/22.
- * 滑动选择页
+ * Created by yaoxy on 2017/3/25.
+ *
  */
-muui.pickerpage=function(option){
-    var source = '<div class="modal muui-pickerpage fade">\
+muui.pickermodal=function(option){
+    var source = '<div class="modal muui-picker fade">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body"></div>\
@@ -15,11 +15,10 @@ muui.pickerpage=function(option){
     }
     var opt = $.extend({
         container:"body",
-        "backdrop":false,
-        "html":"pickerPage 内容",
+        "html":"<div>传递参数:{html:'这里是要插入的内融通'}</div>",
         "history":true//默认hash处理,接管浏览器返回
     },option);
-    var render = template.compile(source),$wrap = $("<div class='pickerpage-wrap'></div>");$html = $(render(opt));
+    var render = template.compile(source),$wrap = $("<div class='picker-wrap'></div>"),$html = $(render(opt));
     $wrap.append(opt.html);
     $html.find(".modal-body").html($wrap);
     $html.mmodal(opt);

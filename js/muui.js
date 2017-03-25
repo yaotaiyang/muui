@@ -24,30 +24,19 @@
  * 按钮组建底部弹出按钮
  */
 ;muui.actionsheet = function(option){
-    var source = '<div class="modal muui-actionsheet fade">\
-        <div class="modal-dialog">\
-            <div class="modal-content">\
-                <div class="modal-body">\
-                    <ul class="muui-actionsheet-ul">\
-                    \{{each list as item key}}\
-                    <li data-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="muui-border muui-ui-li">{{item.text}}</li>\
+    var source = '<ul class="muui-actionsheet-ul">\
+                    {{each list as item key}}\
+                    <li data-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border muui-ui-li">{{item.text}}</li>\
                     {{/each}}\
                     </ul>\
                     <ul class="muui-actionsheet-ul">\
-                        <li data-dismiss="modal" data-ac="click-active" class="btn-li border-1px">取消</li>\
-                    </ul>\
-                </div>\
-            </div>\
-        </div>\
-    </div>';
+                        <li data-dismiss="modal" data-ac="click-active" class="btn btn-li border-1px">取消</li>\
+                    </ul>';
     var opt = $.extend({
-        list:[],
-        container:"body",
-        history:true//默认hash处理,接管浏览器返回
+        list:[{id:"btn-1",text:'测试按钮1'},{id:"btn-1",text:'测试按钮2'}],
     },option);
-    var render = template.compile(source),$html = $(render({list:opt.list}));
-    $html.mmodal(opt);
-    return $html;
+    var render = template.compile(source),$html = $(render(opt));
+    return muui.pickermodal($html);
 };
 /**
  * Created by yaoxy on 2017/3/20.
@@ -99,7 +88,7 @@ muui.alert=function(option){
     option = $.extend({
         "btns":[{text:"确定",type:"default",close:"1"}]
     },option);
-    muui.dialog(option);
+    return muui.dialog(option);
 }
 /**
  * Created by yaoxy on 2017/3/23.
@@ -111,7 +100,7 @@ muui.confirm=function(option){
     option = $.extend({
        "title":"确定"
     },option);
-    muui.dialog(option);
+    return muui.dialog(option);
 }
 /**
  * Created by yaoxy on 2017/3/22.
@@ -148,7 +137,7 @@ muui.confirm=function(option){
  */
 (function ($) {
     var hashObj = {};
-    $.Hash = {
+    muui.hash = {
         hasHash: function (e,url) {
             hashObj = splitHash(url || location.href);
             if (typeof e == 'string' && !!hashObj[e]) {
@@ -255,11 +244,9 @@ muui.confirm=function(option){
  */
 ;muui.loading = function(option){
     var source = '<div class="modal muui-fixed-center muui-loading fade" style="width:{{width}}">\
-            <div class="modal-body">\
-                <div class="align-center">\
+            <div class="modal-body align-center">\
                 <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
-                </div>\
             </div>\
     </div>';
     if(typeof option =="string"){//如果是字符串
@@ -269,7 +256,7 @@ muui.confirm=function(option){
         "container":"body",
         "width":"auto",
         "text":"加载中…",
-        "backdrop":"",
+        "backdrop":"static",
         "time":"",
         "history":false//不接管浏览器返回
     },option);
@@ -288,8 +275,8 @@ muui.confirm=function(option){
  */
 $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回问题
     if(window.performance&&window.performance.navigation&&window.performance.navigation.type==1){ //刷新
-        if($.Hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
-            var resObj = $.Hash.removeHash(/muuimodal.+/,location.href);
+        if(muui.hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
+            var resObj = muui.hash.removeHash(/muuimodal.+/,location.href);
             if(resObj.dels && resObj.dels.length){
                 history.go(-resObj.dels.length);//历史回退
             }
@@ -311,13 +298,13 @@ $.fn.mmodal = function(option){
     $(opt.container).append($html);
     $html.data("guid", guid);
     if(opt.history){
-        $.Hash.setHash(modal_id,1);
+        muui.hash.setHash(modal_id,1);
     }
     $html.modal(opt);
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
-        if(newUrl && oldUrl && $.Hash.getHashObj(oldUrl)[modal_id]==1&&$.Hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
+        if(newUrl && oldUrl && muui.hash.getHashObj(oldUrl)[modal_id]==1&&muui.hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
             $html.data('hide-type','navigate-back').modal('hide');
         }else{
             $html.data('hide-type','normal');
@@ -325,43 +312,18 @@ $.fn.mmodal = function(option){
     });
     $html.on("hidden",function(){
         if($html.data("hide-type")=="navigate-back"){
-            $.Hash.removeHash(modal_id);
-        }else{
-            if(opt.history){
-                history.back();
-            }
-            $.Hash.removeHash(modal_id);
+            muui.hash.removeHash(modal_id);
+        }else if(opt.history){
+            history.back();
         }
         $html.remove();
     });
+    $html.$body = $html.find(".modal-body");
+    $html.$header = $html.find(".modal-header");
+    $html.$footer = $html.find(".modal-footer");
     return $html;
 }
-/* =========================================================
- * bootstrap-modal.js v2.3.2
- * http://getbootstrap.com/2.3.2/javascript.html#modals
- * =========================================================
- * Copyright 2013 Twitter, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================= */
 !function ($) {
-
-    "use strict"; // jshint ;_;
-
-
-    /* MODAL CLASS DEFINITION
-     * ====================== */
-
     var Modal = function (element, options) {
         this.options = options
         this.$element = $(element)
@@ -551,17 +513,12 @@ $.fn.mmodal = function(option){
     }
 
     $.fn.modal.Constructor = Modal
-
-
     /* MODAL NO CONFLICT
      * ================= */
-
     $.fn.modal.noConflict = function () {
         $.fn.modal = old
         return this
     }
-
-
     /* MODAL DATA-API
      * ============== */
 
@@ -582,27 +539,56 @@ $.fn.mmodal = function(option){
 }($);
 
 /**
+ * Created by yaoxy on 2017/3/25.
+ *
+ */
+muui.pickermodal=function(option){
+    var source = '<div class="modal muui-picker fade">\
+        <div class="modal-dialog">\
+            <div class="modal-content">\
+                <div class="modal-body"></div>\
+            </div>\
+        </div>\
+    </div>';
+    if(typeof option == "string" || $.zepto.isZ(option)){
+        option = {html:option}
+    }
+    var opt = $.extend({
+        container:"body",
+        "html":"<div>传递参数:{html:'这里是要插入的内融通'}</div>",
+        "history":true//默认hash处理,接管浏览器返回
+    },option);
+    var render = template.compile(source),$wrap = $("<div class='picker-wrap'></div>"),$html = $(render(opt));
+    $wrap.append(opt.html);
+    $html.find(".modal-body").html($wrap);
+    $html.mmodal(opt);
+    $html.find(".modal-dialog").scroll();
+    return $html;
+}
+/**
  * Created by yaoxy on 2017/3/22.
  * 滑动选择页
  */
 muui.pickerpage=function(option){
-    var opt = $.extend({},option);
     var source = '<div class="modal muui-pickerpage fade">\
         <div class="modal-dialog">\
             <div class="modal-content">\
-                <div class="modal-body">\
-                   {{#html}}\
-                </div>\
+                <div class="modal-body"></div>\
             </div>\
         </div>\
     </div>';
+    if(typeof option == "string" || $.zepto.isZ(option)){
+        option = {html:option}
+    }
     var opt = $.extend({
         container:"body",
         "backdrop":false,
         "html":"pickerPage 内容",
         "history":true//默认hash处理,接管浏览器返回
     },option);
-    var render = template.compile(source),$html = $(render(opt));
+    var render = template.compile(source),$wrap = $("<div class='pickerpage-wrap'></div>");$html = $(render(opt));
+    $wrap.append(opt.html);
+    $html.find(".modal-body").html($wrap);
     $html.mmodal(opt);
     $html.find(".modal-dialog").scroll();
     return $html;
@@ -615,6 +601,7 @@ $.fn.scroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
         onChange:function(){},// onChange回调
+        bounce:false,//是否有回弹
         position:0,
         inertia:200  //惯性大小
     }, options);
@@ -678,8 +665,13 @@ $.fn.scroll = function (options) {
     };
     function setTranslate(diff,callback){
         var dy = diff,bouce = 4;
-        if(dy>0){dy = dy/bouce};
-        if(dy < height-scrollHeight){dy =height - scrollHeight + (dy-(height - scrollHeight))/bouce};
+        if(opt.bounce){
+            if(dy>0){dy = dy/bouce};
+            if(dy < height-scrollHeight){dy =height - scrollHeight + (dy-(height - scrollHeight))/bouce};
+        }else{
+            if(dy>0){dy = 0};
+            if(dy < height-scrollHeight){dy = height-scrollHeight};
+        }
         return $scroll.css({
             '-webkit-transform': 'translate3d(0, '+dy+'px, 0)',
             'transform': 'translate3d(0, '+dy+'px, 0)'
@@ -694,8 +686,8 @@ $.fn.scroll = function (options) {
 $(function(){
     $("body").on("focus",".muui-searchbar .search-input",function(){
         $(this).closest("form").addClass("muui-focus");
-    }).on("blur",".muui-searchbar .search-input",function(){
-        $(this).closest("form").removeClass("muui-focus");
+    }).on("click",".muui-searchbar .cancel",function(){
+        $(this).closest("form").removeClass("muui-focus").find(".search-input").val("");
     });
 });
 /*!art-template - Template Engine | http://aui.github.com/artTemplate/*/

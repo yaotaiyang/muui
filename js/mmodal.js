@@ -4,8 +4,8 @@
  */
 $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回问题
     if(window.performance&&window.performance.navigation&&window.performance.navigation.type==1){ //刷新
-        if($.Hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
-            var resObj = $.Hash.removeHash(/muuimodal.+/,location.href);
+        if(muui.hash.hasHash(/muuimodal.+/)){//如果存在以前actionsheet的hash,都去掉
+            var resObj = muui.hash.removeHash(/muuimodal.+/,location.href);
             if(resObj.dels && resObj.dels.length){
                 history.go(-resObj.dels.length);//历史回退
             }
@@ -27,13 +27,13 @@ $.fn.mmodal = function(option){
     $(opt.container).append($html);
     $html.data("guid", guid);
     if(opt.history){
-        $.Hash.setHash(modal_id,1);
+        muui.hash.setHash(modal_id,1);
     }
     $html.modal(opt);
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
-        if(newUrl && oldUrl && $.Hash.getHashObj(oldUrl)[modal_id]==1&&$.Hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
+        if(newUrl && oldUrl && muui.hash.getHashObj(oldUrl)[modal_id]==1&&muui.hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
             $html.data('hide-type','navigate-back').modal('hide');
         }else{
             $html.data('hide-type','normal');
@@ -41,14 +41,14 @@ $.fn.mmodal = function(option){
     });
     $html.on("hidden",function(){
         if($html.data("hide-type")=="navigate-back"){
-            $.Hash.removeHash(modal_id);
-        }else{
-            if(opt.history){
-                history.back();
-            }
-            $.Hash.removeHash(modal_id);
+            muui.hash.removeHash(modal_id);
+        }else if(opt.history){
+            history.back();
         }
         $html.remove();
     });
+    $html.$body = $html.find(".modal-body");
+    $html.$header = $html.find(".modal-header");
+    $html.$footer = $html.find(".modal-footer");
     return $html;
 }
