@@ -9,8 +9,11 @@
     <script src="../dist/js/muui.min.js"></script>
     <style>
         body{background-color: #efefef}
-        .scroll-list{padding-top:44px;margin-bottom:88px;background-color: #fff;}
-        .muui-list-loadmore{margin-top: -88px;}
+        body:after{content:"";display: block;height: 1px;}
+        .scroll-ul{
+            background: #fff;}
+        .scroll-list{padding-top:44px;margin-bottom: 44px;}
+        .muui-list-loadmore{}
     </style>
 </head>
 <body>
@@ -38,8 +41,7 @@
     </ul>
 </div>
 <div class="scroll-list">
-    <ul class="muui-list scroll-ul" id="list">
-    </ul>
+    <ul class="muui-list scroll-ul" id="list"></ul>
 </div>
 <script type="text/html" id="jstemp-list">
     {{each list as val key}}
@@ -73,6 +75,7 @@
             },
             refresh:function(){
                 var $loading = muui.loading();
+                $("#list").html("");
                 $.ajax({
                     url:"list.json",
                     cache:false,

@@ -8,17 +8,15 @@ $.fn.refreshList = function(opt){
         "resetRefresh":function(){}, //上滑取消刷新
         "refresh":function(){}, //开始刷新
         "addData":function(){}, //加载更多
-        "topHeight":44 //下拉刷新顶部dom高度
+        "topHeight":48 //下拉刷新顶部dom高度
     },opt);
     var $tDom = $('<div class="muui-list-pull" id="muui-list-pull"><span class="default"><i class="muui-font">&#xe796;</i> 继续下拉刷新…</span><span class="ready"><i class="muui-font">&#xe795;</i> 松开自动动刷…</span></div>');
+    $tDom.css({height:opt.topHeight,'line-height':opt.topHeight+'px',top:-opt.topHeight});
     var $loadmore = $('<div class="muui-list-loadmore align-center"><i class="muui-loading-icon"></i> 加载中…</div>');
+    var listWrap = $(this);
     $("body").append($tDom);
-    if(opt.scrollWrap==window){
-        $("body").append($loadmore);
-    }else{
-        $(opt.scrollWrap).append($loadmore);
-    }
-    var listWrap = $(this),tDom =$tDom, bDom = $loadmore,scrollWrap= $(opt.scrollWrap),startY = 0,transY= 0,canMove=0,canReset = 0,moveMaxY= 0,turned=0,ids = [];
+    listWrap.after($loadmore);
+    var tDom =$tDom, bDom = $loadmore,scrollWrap= $(opt.scrollWrap),startY = 0,transY= 0,canMove=0,canReset = 0,moveMaxY= 0,turned=0,ids = [];
     if(opt.scrollWrap == window){
         scrollWrap = $(window.document.body);
     }
