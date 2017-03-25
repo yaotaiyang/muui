@@ -75,6 +75,7 @@
                 var $loading = muui.loading();
                 $.ajax({
                     url:"list.json",
+                    cache:false,
                     dataType:"json",
                     success:function(data){
                         var temp =  template("jstemp-list",{list:data});
@@ -90,6 +91,7 @@
                 $.ajax({
                     url:"list.json",
                     dataType:"json",
+                    cache:false,
                     success:function(data){
                         var temp =  template("jstemp-list",{list:data});
                         $("#list").append(temp);
