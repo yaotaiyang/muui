@@ -1,6 +1,14 @@
 /**
  * Created by yaoxy on 2017/3/23.
  */
+;(function(){
+    var isSupportTouch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch;
+    muui.scrollEvent = {
+        "start":isSupportTouch?"touchstart":"mousedown",
+        "move":isSupportTouch?"touchmove":"mousemove",
+        "end":isSupportTouch?"touchend":"mouseup mouseleave"
+    };
+})();
 $.fn.scroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
@@ -9,13 +17,9 @@ $.fn.scroll = function (options) {
         position:0,
         inertia:200  //惯性大小
     }, options);
-    var $this = $(this),$scroll=$($this.children()[0]),isSupportTouch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch;
+    var $this = $(this),$scroll=$($this.children()[0]);
     var start=null,moveEnd,trans= 0,startTime,scrollHeight = $this[0].scrollHeight,height = $this.height();
-    var event ={
-        "start":isSupportTouch?"touchstart":"mousedown",
-        "move":isSupportTouch?"touchmove":"mousemove",
-        "end":isSupportTouch?"touchend":"mouseup mouseleave"
-    };
+    var event = muui.scrollEvent;
     $(window).on("resize",function(){
         scrollHeight = $this[0].scrollHeight,height = $this.height();
     });

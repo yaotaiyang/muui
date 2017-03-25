@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>列表</title>
+    <link rel="stylesheet" href="../dist/css/muui.min.css">
+    <script src="../dist/js/zepto.min.js"></script>
+    <script src="../dist/js/muui.min.js"></script>
+    <style>
+        body{background-color: #efefef}
+        .scroll-list{padding-top:44px;margin-bottom:88px;background-color: #fff;}
+        .muui-list-loadmore{margin-top: -88px;}
+    </style>
+</head>
+<body>
+<div class="muui-searchbar">
+    <form>
+        <div class="muui-table">
+            <label class="muui-cell input">
+                <i class="muui-font search-icon">&#xe752;</i>
+                <input placeholder="搜索" type="text" name="query" class="search-input">
+            </label>
+            <div data-ac="click-active" onclick="return" class="muui-cell align-middle cancel">
+                <div>取消</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="muui-bottom ">
+    <ul class="muui-table">
+        <li data-ac="click-active" class="selected muui-cell muui-border"><i class="muui-font">&#xe750;</i><div class="x-small">首页</div><i class="muui-red">8</i></li>
+        <li data-ac="click-active" class="muui-cell muui-border"><i class="muui-font">&#xe75e;</i><div class="x-small">我</div><i class="muui-red">10</i></li>
+        <li data-ac="click-active" class="muui-cell muui-border"><i class="muui-font">&#xe733;</i><div class="x-small">收藏</div></li>
+        <li data-ac="click-active" class="muui-cell muui-border"><i class="muui-font">&#xe74c;</i><div class="x-small">设置</div>
+            <i class="muui-dot"></i>
+        </li>
+    </ul>
+</div>
+<div class="scroll-list">
+    <ul class="muui-list scroll-ul" id="list">
+    </ul>
+</div>
+<script type="text/html" id="jstemp-list">
+    {{each list as val key}}
+    <li data-ac="click-active" class="muui-item muui-border">
+        <a href="../dist/font/demo_unicode.html" class="muui-table">
+            <div class="muui-cell image-cell align-middle align-center">
+                <img src="images/img_default.png">
+                <div class="small">摇太阳</div>
+            </div>
+            <div class="muui-cell">
+                <div class="main-info line-clamp-1">{{val}}</div>
+                <div class="small">{{val}} <span class="muui-color">[详细]</span></div>
+            </div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script>
+    $(function(){
+        var time1 = + new Date();
+        $("#list").html(template("jstemp-list",{list:[]}));
+        var time2 = + new Date();
+        console.log(time1,time2);
+    });
+    $(function(){
+        $("#list").refreshList({
+            readyRefresh:function(){
+
+            },
+            resetRefresh:function(){
+            },
+            refresh:function(){
+                var $loading = muui.loading();
+                $.ajax({
+                    url:"list.json",
+                    dataType:"json",
+                    success:function(data){
+                        var temp =  template("jstemp-list",{list:data});
+                        $("#list").html(temp);
+                    },
+                    complete:function(){
+                        $loading.destory()
+                    }
+                })
+            },
+            addData:function(){
+                var $loading = muui.loading();
+                $.ajax({
+                    url:"list.json",
+                    dataType:"json",
+                    success:function(data){
+                        var temp =  template("jstemp-list",{list:data});
+                        $("#list").append(temp);
+                    },
+                    complete:function(){
+                        $loading.destory();
+                    }
+                })
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
