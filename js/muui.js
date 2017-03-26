@@ -305,6 +305,8 @@ $.fn.mmodal = function(option){
         muui.hash.setHash(modal_id,1);
     }
     $html.modal(opt);
+    var $backdrop = $html.data("modal").$backdrop;
+    $backdrop && $backdrop.on("touchmove",function(e){e.preventDefault();e.stopPropagation()});
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
@@ -604,23 +606,26 @@ muui.pickerpage=function(option){
 $.fn.refreshList = function(opt){
     var opt = $.extend({
         "scrollWrap":window,//滚动容器
+        "pullRefresh":1,
         "readyRefresh":function(){}, //提示松开刷新
         "resetRefresh":function(){}, //上滑取消刷新
         "refresh":function(){}, //开始刷新
         "addData":function(){}, //加载更多
         "topHeight":48 //下拉刷新顶部dom高度
     },opt);
-    var $tDom = $('<div class="muui-list-pull" id="muui-list-pull"><span class="default"><i class="muui-font">&#xe796;</i> 继续下拉刷新…</span><span class="ready"><i class="muui-font">&#xe795;</i> 松开自动动刷…</span></div>');
+    var $tDom = $('<div class="muui-list-pull" id="muui-list-pull"><span class="default"><i class="muui-font">&#xe796;</i><span class="text">继续下拉刷新…</span></span><span class="ready"><i class="muui-font">&#xe795;</i><span class="text">松开立即更新…</span></span></div>');
     $tDom.css({height:opt.topHeight,'line-height':opt.topHeight+'px',top:-opt.topHeight});
-    var $loadmore = $('<div class="muui-list-loadmore align-center"><i class="muui-loading-icon"></i> 加载中…</div>');
+    var $loadmore = $('<div class="muui-list-loadmore align-center"><i class="muui-loading-icon"></i><span class="text">加载中…</span></div>');
     var listWrap = $(this);
-    $("body").append($tDom);
     listWrap.after($loadmore);
     var tDom =$tDom, bDom = $loadmore,scrollWrap= $(opt.scrollWrap),startY = 0,transY= 0,canMove=0,canReset = 0,moveMaxY= 0,turned=0,ids = [];
     if(opt.scrollWrap == window){
         scrollWrap = $(window.document.body);
     }
-    listWrap.on(muui.scrollEvent.start,ontouchstart).on(muui.scrollEvent.move,ontouchmove).on(muui.scrollEvent.end,ontouchend);
+    if(opt.pullRefresh){
+        $("body").append($tDom);
+        listWrap.on("touchstart",ontouchstart).on("touchmove",ontouchmove).on("touchend",ontouchend);
+    }
     $(opt.scrollWrap).on("scroll",onscroll).trigger("scroll");
     function ontouchstart(e){
         startY = e.touches[0].pageY;

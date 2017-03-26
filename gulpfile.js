@@ -35,7 +35,7 @@ gulp.task('minifyjs',function() {
         })).pipe(gulp.dest('dist/js'));  //输出
 });
 gulp.task('copy',['css','minifyjs'],function(){
-    return gulp.src(['js/template.js','js/zepto.min.js','js/muui.js'])
+    return gulp.src(['js/zepto.min.js','js/muui.js'])
         .pipe(gulp.dest('dist/js'));
 });
 gulp.task('connect', function () {

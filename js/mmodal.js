@@ -30,6 +30,8 @@ $.fn.mmodal = function(option){
         muui.hash.setHash(modal_id,1);
     }
     $html.modal(opt);
+    var $backdrop = $html.data("modal").$backdrop;
+    $backdrop && $backdrop.on("touchmove",function(e){e.preventDefault();e.stopPropagation()});
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
