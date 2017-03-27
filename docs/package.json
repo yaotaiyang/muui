@@ -1,7 +1,7 @@
 {
-  "name": "muui",
-  "version": "0.1.0",
-  "description": "移动样式库",
+  "name": "MUUI",
+  "version": "0.1",
+  "description": "简洁、直观的移动前端开发框架，让移动web开发更迅速、简单。",
   "main": "index.js",
   "scripts": {
     "test": "make test"
