@@ -698,7 +698,8 @@ $.fn.refreshList = function(opt){
     }
     function getData(){
         var wHeight = $(window).height();
-        if(bDom[0].getBoundingClientRect().top < wHeight){
+        var pos = bDom[0].getBoundingClientRect().top;
+        if(pos >0 && pos < wHeight){
             opt.addData.call(listWrap);
         }
         ids = [];
