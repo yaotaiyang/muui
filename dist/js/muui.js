@@ -811,7 +811,7 @@ $(function(){
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.toast = function(option){
-    var source = '<div class="modal muui-fixed-center muui-toast fade" style="width:{{width}}">\
+    var source = '<div class="modal muui-fixed-center muui-toast fade {{position}}" style="width:{{width}}">\
             <div class="modal-body">\
                 <p>{{text}}</p>\
             </div>\
@@ -821,6 +821,7 @@ $(function(){
     }
     var opt = $.extend({
         "container":"body",
+        "position":"middle",
         "width":"auto",
         "text":"toast提示!",
         "backdrop":"",
