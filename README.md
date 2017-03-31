@@ -10,4 +10,4 @@
 
 ![手机扫码查看](./example/images/muui.png)
 
-[点击查看示例](https://yaotaiyang.github.io/muui/example/)
+[点击查看文档](https://yaotaiyang.github.io/muui/)        [点击查看示例](https://yaotaiyang.github.io/muui/example/)
