@@ -1,10 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>muui</title>
-</head>
-<body>
-<a href="./example">手机案例</a>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>MUUI Documentation</title>
+    <meta name="keywords" content="documentation,dox" />
+    <meta name="description" content="简洁、直观的移动前端开发框架，让移动web开发更迅速、简单。" />
+    <script src="assets/prettify.js"></script>
+    <script src="assets/jquery-1.8.2.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/base.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top top-navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">MUUI</a>
+        </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          
+            <li>
+              <a href="./1.基本样式.html">1.基本样式</a>
+            </li>
+          
+            <li>
+              <a href="./2.基础样式.html">2.基础样式</a>
+            </li>
+          
+            <li>
+              <a href="./3.交互.html">3.交互</a>
+            </li>
+          
+            <li>
+              <a href="./4.字体图标.html">4.字体图标</a>
+            </li>
+          
+            <li>
+              <a href="./Changelog.html">Changelog</a>
+            </li>
+          
+          
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <header class="jumbotron subhead">
+      <div class="container">
+        <h1>MUUI</h1>
+        <p class="lead">
+          简洁、直观的移动前端开发框架，让移动web开发更迅速、简单。<a href="https://yaotaiyang.github.io/muui/example/">查看</a>
+        </p>
+      </div>
+    </header>
+
+<div class="container content">
+  <div class="row">
+  	<div class="col-md-3">
+      <ul class="nav nav-list bs-docs-sidenav affix">
+
+  <li class="level_2">
+    <a href="#index_初衷来源" title="初衷来源">
+      <i class="icon-chevron-right"></i>初衷来源
+    </a>
+  </li>
+
+</ul>
+
+    </div>
+    <div class="col-md-9">
+      <section>
+        <h1 id="muui-">muui 为移动开发提效</h1>
+<h2 id="-">初衷来源</h2>
+<p>覆盖移动端常用样式,交互,利用该库能够快速搭建移动短站点,让移动web开发更迅速、简单。</p>
+<p><div>
+<img src="assets/image/IMG_2760.PNG"/ width='320'>
+<img src="assets/image/IMG_2761.PNG"/ width='320'>
+<img src="assets/image/IMG_2762.PNG"/ width='320'>
+<img src="assets/image/IMG_2763.PNG"/ width='320'>
+<img src="assets/image/IMG_2766.PNG"/ width='320'>
+<img src="assets/image/IMG_2764.PNG"/ width='320'>
+<img src="assets/image/IMG_2765.PNG"/ width='320'></p>
+<p></div>
+<br>
+<br></p>
+<h4>手机扫描下方二维码查看</h4>
+
+<p><img src="assets/image/muui.png"/></p>
+
+      </section>
+  
+    </div>
+  </div>
+</div>
+      <footer class="footer">
+        <div class="container">
+          <p class="pull-right">
+            <a href="#">Back to top</a>
+          </p>
+          <!--<p>源码详情查看<a href="https://github.com/yaotaiyang/muui">muui</a></p>-->
+          <ul class="footer-links">
+            <li><a href="https://github.com/yaotaiyang/muui">muui github 地址</a></li>
+            <li><a href="hhttps://yaotaiyang.github.io/muui/example/">移动展示</a></li>
+            <li><a href="https://github.com/yaotaiyang/muui/issues?state=open">提交bug</a></li>
+          </ul>
+      </div>
+    </footer>
+    <script>
+      $(function() {
+        $('pre').addClass('prettyprint');
+        $('td pre').removeClass('prettyprint');
+        prettyPrint();
+        var $window = $(window);
+        var sidenav = $('.bs-docs-sidenav');
+        if (sidenav.height() < window.innerHeight) {
+          sidenav.affix({
+            offset: {
+              top: function () {
+                return $window.width() <= 980 ? 290 : 210
+              },
+              bottom: 200
+            }
+          });
+        } else {
+          sidenav.removeClass('affix');
+        }
+        $(".content").find('h1, h2, h3, h4, h5, h6').each(function () {
+          var node = $(this);
+          // 总是设置id
+          node.attr("id", node.data('id') || "index_" + node.text());
+        });
+
+        $('.bs-docs-sidenav .accordion-marker').on('click', function(event) {
+          var current = $(event.currentTarget);
+          current.find('.glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+        });
+      });
+    </script>
+  
+  </body>
 </html>
+

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>MUUI Documentation</title>
+    <meta name="keywords" content="documentation,dox" />
+    <meta name="description" content="简洁、直观的移动前端开发框架，让移动web开发更迅速、简单。" />
+    <script src="assets/prettify.js"></script>
+    <script src="assets/jquery-1.8.2.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/base.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top top-navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">MUUI</a>
+        </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          
+            <li>
+              <a href="./1.基本样式.html">1.基本样式</a>
+            </li>
+          
+            <li>
+              <a href="./2.基础样式.html">2.基础样式</a>
+            </li>
+          
+            <li>
+              <a href="./3.交互.html">3.交互</a>
+            </li>
+          
+            <li>
+              <a href="./4.字体图标.html">4.字体图标</a>
+            </li>
+          
+            <li>
+              <a href="./Changelog.html">Changelog</a>
+            </li>
+          
+          
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <header class="jumbotron subhead">
+      <div class="container">
+        <h1>MUUI</h1>
+        <p class="lead">
+          简洁、直观的移动前端开发框架，让移动web开发更迅速、简单。<a href="https://yaotaiyang.github.io/muui/example/">查看</a>
+        </p>
+      </div>
+    </header>
+
+<div class="container content">
+  <div class="row">
+  	<div class="col-md-3">
+      <ul class="nav nav-list bs-docs-sidenav affix">
+
+  <li class="level_3">
+    <a href="#index_交互-总览" title="交互-总览">
+      <i class="icon-chevron-right"></i>交互-总览
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_浮层-modal" title="浮层-modal">
+      <i class="icon-chevron-right"></i>浮层-modal
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_actionsheet-底部弹出按钮" title="actionsheet-底部弹出按钮">
+      <i class="icon-chevron-right"></i>actionsheet-底部弹出按钮
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_alert-警告框" title="alert-警告框">
+      <i class="icon-chevron-right"></i>alert-警告框
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_confirm-确认框" title="confirm-确认框">
+      <i class="icon-chevron-right"></i>confirm-确认框
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_toast-提示框" title="toast-提示框">
+      <i class="icon-chevron-right"></i>toast-提示框
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_loading-加载等待" title="loading-加载等待">
+      <i class="icon-chevron-right"></i>loading-加载等待
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_pickermodal-底部弹出内容" title="pickermodal-底部弹出内容">
+      <i class="icon-chevron-right"></i>pickermodal-底部弹出内容
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_pickerpage-侧面滑出整屏" title="pickerpage-侧面滑出整屏">
+      <i class="icon-chevron-right"></i>pickerpage-侧面滑出整屏
+    </a>
+  </li>
+
+  <li class="level_3">
+    <a href="#index_列表-下拉与上滑" title="列表-下拉与上滑">
+      <i class="icon-chevron-right"></i>列表-下拉与上滑
+    </a>
+  </li>
+
+</ul>
+
+    </div>
+    <div class="col-md-9">
+      <section>
+        <p><link rel="stylesheet" href="https://yaotaiyang.github.io/muui/dist/css/muui.min.css"></p>
+<p><meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"></p>
+<p><script src="https://yaotaiyang.github.io/muui/dist/js/zepto.min.js"></script></p>
+<p><script src="https://yaotaiyang.github.io/muui/dist/js/muui.min.js"></script></p>
+<style>p{margin:10px 0;}
+h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
+
+
+<h3 id="-">交互-总览</h3>
+<p>当然,muui提供了一些很方便易用的交互交互效果.目前交互大体上有两个,一个是浮层,一个是列表.对于所有的浮层操作,都会返回当前产生浮层的对象.对于列表,包括列表的下拉刷新与上滑加载.</p>
+<h3 id="-modal">浮层-modal</h3>
+<p>浮层与bootstrap 2 中的modal相同.仅用一行JavaScript代码即可启动id为 myModal 的对话框：</p>
+<pre><code>$(&#39;#myModal&#39;).modal(options); //仅仅说明该用法,实际移动端无具体使用场景,具体请看下面的其它浮层方法..下面方法皆通过该方法扩展
+</code></pre><p><br></p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="width: 100px;">名称</th>
+            <th style="width: 100px;">类型</th>
+            <th style="width: 100px;">默认值</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>backdrop</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>为模态对话框添加一个背景元素。另外，为背景指定<code>
+                static</code>时，点击模态对话框的外部区域不会将其关闭。</td>
+        </tr>
+        <tr>
+            <td>show</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>初始化时即显示模态对话框</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h4 id="-">方法</h4>
+<pre><code>$(&#39;#myModal&#39;).modal(&#39;toggle&#39;) //手动打开或隐藏一个模态对话框。
+$(&#39;#myModal&#39;).modal(&#39;show&#39;)  //手动打开一个模态对话框。
+$(&#39;#myModal&#39;).modal(&#39;hide&#39;) //手动隐藏一个模态对话框。
+</code></pre><p><br>    </p>
+<h4 id="-">事件</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="width: 150px;">事件</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>show</td>
+            <td>当<code>
+                show</code>方法被调用时，此事件将被立即触发。</td>
+        </tr>
+        <tr>
+            <td>shown</td>
+            <td>当模态对话框呈现到用户面前时（会等待过渡效果执行结束）此事件被触发。</td>
+        </tr>
+        <tr>
+            <td>hide</td>
+            <td>当<code>
+                hide</code>方法被调用时，此事件被立即触发。</td>
+        </tr>
+        <tr>
+            <td>hidden</td>
+            <td>当模态对话框被隐藏（而且过渡效果执行完毕）之后，此事件将被触发。</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3 id="actionsheet-">actionsheet-底部弹出按钮</h3>
+<pre><code>var actionsheet = muui.actionsheet({
+    list:[
+            {text:&quot;abc&quot;,type:&quot;aaa&quot;},//text属性会现实在弹出的按钮上,其他属性会以data-xxx的形式,渲染到对应按钮的dom上
+            {text:&quot;bcd&quot;,type:&quot;bbb&quot;}
+        ],
+    container:&quot;body&quot;, //默认插入在html的body下
+    history:true, //默认通过hash拦截浏览器返回,点击浏览器返回,actionsheet消失
+    });
+
+actionsheet.destory(); //关闭
+actionsheet.on(&quot;hide&quot;,function(){});//关闭时
+actionsheet.on(&quot;hiden&quot;,function(){});//关闭完时
+actionsheet.on(&quot;click&quot;,&quot;li&quot;,function(){ //为actionsheet中的dom委托事件
+    console.log(this);
+    alert(&quot;click&quot;);
+});
+</code></pre><h3 id="alert-">alert-警告框</h3>
+<pre><code>var aalert = muui.alert({
+    container:&quot;body&quot;,
+    width:&quot;80%&quot;,
+    title:&quot;提醒&quot;,
+    content:&quot;是否确认该操作&quot;,
+    backdrop:&#39;static&#39;,
+    history:true
+});
+aalert.destory(); //关闭
+aalert.on(&quot;hide&quot;,function(){});//关闭时
+aalert.on(&quot;hiden&quot;,function(){});//关闭完时
+
+//当然,你也可以简写
+ var aalert = muui.alert(&quot;是否确认?&quot;);
+ aalert.on(&quot;click&quot;,&quot;.btn&quot;,function(){
+    alert(&quot;你点击了按钮&quot;);
+ });
+</code></pre><h3 id="confirm-">confirm-确认框</h3>
+<pre><code>var confirm = muui.confirm({
+    container:&quot;body&quot;,
+    width:&quot;80%&quot;,
+    title:&quot;提醒&quot;,
+    content:&quot;是否确认该操作&quot;,
+    btns:[{text:&quot;取消&quot;,type:&quot;default&quot;,close:&quot;1&quot;},{text:&quot;确定&quot;,type:&quot;primary&quot;}],
+    backdrop:&#39;static&#39;,
+    history:true
+});
+confirm.destory(); //关闭
+confirm.on(&quot;hide&quot;,function(){});//关闭时
+confirm.on(&quot;hiden&quot;,function(){});//关闭完时
+
+//当然,你也可以简写
+var confirm = muui.confirm(是否确认该操作&quot;);
+confirm.on(&quot;click&quot;,&quot;.btn&quot;,function(){
+    alert(&quot;你点击的按钮&quot;);
+});    
+</code></pre><h3 id="toast-">toast-提示框</h3>
+<pre><code>var toast = muui.confirm({
+   position:&quot;middle&quot;, //&quot;top&quot;,&quot;bottom&quot;,默认middle
+   text:&quot;这是一个提醒&quot;,
+   time:&quot;1500&quot;
+});
+toast.destory(); //关闭
+toast.on(&quot;hide&quot;,function(){});//关闭时
+toast.on(&quot;hiden&quot;,function(){});//关闭完时  
+
+//当然,你也可以简写
+var toast = muui.toast(&quot;是否确认?&quot;); 
+</code></pre><h3 id="loading-">loading-加载等待</h3>
+<pre><code>var loading = muui.loading({
+   text:&quot;这是一个提醒&quot;,
+   time:&quot;1500&quot; //1.5s后自动关闭,为空表示不关闭,默认为空
+});
+loading.destory(); //关闭
+loading.on(&quot;hide&quot;,function(){});//关闭时
+loading.on(&quot;hiden&quot;,function(){});//关闭完时  
+
+//当然,你也可以简写
+var loading = muui.loading(&quot;是否确认?&quot;);
+</code></pre><h3 id="pickermodal-">pickermodal-底部弹出内容</h3>
+<pre><code>var pickermodal =  muui.pickermodal($(&quot;#picker-ul&quot;).clone());
+pickermodal.destory(); //关闭
+pickermodal.on(&quot;hide&quot;,function(){});//关闭时
+pickermodal.on(&quot;hiden&quot;,function(){});//关闭完时
+pickermodal.on(&quot;click&quot;,&quot;li&quot;,function(){
+    //给pickermodal中的dom li添加事件
+});
+
+//当然,如果你不需要截取浏览器返回,或者有冲突,你可以关闭
+var pickermodal = muui.pickermodal({
+    html:$(&quot;#picker-ul&quot;).clone(),
+    history:false,
+});          
+</code></pre><h3 id="pickerpage-">pickerpage-侧面滑出整屏</h3>
+<pre><code>var pickerpage =  muui.pickerpage($(&quot;#picker-ul&quot;).clone());
+pickerpage.destory(); //关闭
+pickerpage.on(&quot;hide&quot;,function(){});//关闭时
+pickerpage.on(&quot;hiden&quot;,function(){});//关闭完时
+pickerpage.on(&quot;click&quot;,&quot;li&quot;,function(){
+    //给pickerpage中的dom li添加事件
+});
+
+//当然,如果你不需要截取浏览器返回,或者有冲突,你可以关闭
+var pickerpage = muui.pickerpage({
+    html:$(&quot;#picker-ul&quot;).clone(),
+    history:false,
+});   
+</code></pre><h3 id="-">列表-下拉与上滑</h3>
+<pre><code>$(&quot;#list&quot;).refreshList({
+    pullRefresh:1,//是否有下拉刷新交互
+    topHeight:48, //下拉刷新顶部dom高度
+    readyRefresh:function(){},//准备刷新
+    resetRefresh:function(){},//重置
+    refresh:function(){},//刷新
+    addData:function(){}//添加数据
+});
+</code></pre><p>具体查看示例:
+ <a href="https://yaotaiyang.github.io/muui/example/">https://yaotaiyang.github.io/muui/example/</a></p>
+<p><img src="assets/image/muui.png"/></p>
+
+      </section>
+  
+    </div>
+  </div>
+</div>
+      <footer class="footer">
+        <div class="container">
+          <p class="pull-right">
+            <a href="#">Back to top</a>
+          </p>
+          <!--<p>源码详情查看<a href="https://github.com/yaotaiyang/muui">muui</a></p>-->
+          <ul class="footer-links">
+            <li><a href="https://github.com/yaotaiyang/muui">muui github 地址</a></li>
+            <li><a href="hhttps://yaotaiyang.github.io/muui/example/">移动展示</a></li>
+            <li><a href="https://github.com/yaotaiyang/muui/issues?state=open">提交bug</a></li>
+          </ul>
+      </div>
+    </footer>
+    <script>
+      $(function() {
+        $('pre').addClass('prettyprint');
+        $('td pre').removeClass('prettyprint');
+        prettyPrint();
+        var $window = $(window);
+        var sidenav = $('.bs-docs-sidenav');
+        if (sidenav.height() < window.innerHeight) {
+          sidenav.affix({
+            offset: {
+              top: function () {
+                return $window.width() <= 980 ? 290 : 210
+              },
+              bottom: 200
+            }
+          });
+        } else {
+          sidenav.removeClass('affix');
+        }
+        $(".content").find('h1, h2, h3, h4, h5, h6').each(function () {
+          var node = $(this);
+          // 总是设置id
+          node.attr("id", node.data('id') || "index_" + node.text());
+        });
+
+        $('.bs-docs-sidenav .accordion-marker').on('click', function(event) {
+          var current = $(event.currentTarget);
+          current.find('.glyphicon').toggleClass('glyphicon-chevron-right glyphicon-chevron-down');
+        });
+      });
+    </script>
+  
+  </body>
+</html>
+
