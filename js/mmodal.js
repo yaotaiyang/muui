@@ -19,7 +19,7 @@ $.fn.destory = function(){
     //}
 };
 $.fn.mmodal = function(option){
-    var $html = $(this),guid= $.guid(),modal_id = "muuimodal-"+guid;
+    var $html = $(this),guid= muui.guid(),modal_id = "muuimodal-"+guid;
     var opt = $.extend({
         history:true,
         container:"body"
