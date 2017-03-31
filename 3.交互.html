@@ -258,12 +258,12 @@ confirm.on(&quot;hide&quot;,function(){});//关闭时
 confirm.on(&quot;hiden&quot;,function(){});//关闭完时
 
 //当然,你也可以简写
-var confirm = muui.confirm(是否确认该操作&quot;);
+var confirm = muui.confirm(&quot;是否确认该操作&quot;);
 confirm.on(&quot;click&quot;,&quot;.btn&quot;,function(){
     alert(&quot;你点击的按钮&quot;);
 });    
 </code></pre><h3 id="toast-">toast-提示框</h3>
-<pre><code>var toast = muui.confirm({
+<pre><code>var toast = muui.toast({
    position:&quot;middle&quot;, //&quot;top&quot;,&quot;bottom&quot;,默认middle
    text:&quot;这是一个提醒&quot;,
    time:&quot;1500&quot;
