@@ -12,8 +12,12 @@
     "doxmate-theme": "bin/doxmate-theme"
   },
   "keywords": [
-    "documentation",
-    "dox"
+    "移动样式库",
+    "mobile样式库",
+    "移动bootstrap",
+    "mobile-bootstrap",
+    "css",
+    "muui"
   ],
   "dependencies": {
     "commander": "*",
