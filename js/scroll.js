@@ -9,25 +9,34 @@
         "end":isSupportTouch?"touchend":"mouseup mouseleave"
     };
 })();
-$.fn.scroll = function (options) {
+$.fn.mscroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
         onChange:function(){},// onChange回调
         bounce:false,//是否有回弹
+        axis:"y",//默认纵向滑动,x为横向滑动
         position:0,
         inertia:200  //惯性大小
     }, options);
     var $this = $(this),$scroll=$($this.children()[0]);
-    var start=null,moveEnd,trans= 0,startTime,scrollHeight = $this[0].scrollHeight,height = $this.height();
+    var start=null,moveEnd,trans= 0,startTime,scrollRange,range;
     var event = muui.scrollEvent;
-    $(window).on("resize",function(){
-        scrollHeight = $this[0].scrollHeight,height = $this.height();
-    });
+    getRange();
+    $(window).on("resize",getRange);
     $this.on(event.start,funcStart);
     $this.on(event.move,funcMove);
     $this.on(event.end,funcEnd);
+    function getRange(){
+        if(opt.axis == "x"){
+            scrollRange = $this[0].scrollWidth;
+            range = $this.width();
+        }else{
+            scrollRange = $this[0].scrollHeight;
+            range = $this.height();
+        }
+    }
     function funcStart(e){
-        moveEnd = start = getY(e);
+        moveEnd = start = getStartAxis(e);
         startTime = +new Date();
     }
     function funcMove(e){
@@ -35,34 +44,39 @@ $.fn.scroll = function (options) {
         e.preventDefault();
         e.stopPropagation();
         setTransition(0);
-        var curY = getY(e);
-        trans += curY-moveEnd;
+        var coordinate = getStartAxis(e);
+        trans += coordinate-moveEnd;
         setTranslate(trans);
-        moveEnd = curY;
+        moveEnd = coordinate;
     }
     function funcEnd(e){
         if(start===null){return};
         setTransition(opt.animationTime);
         var entTime = + new Date();
-        var curY = getY(e),vy = (curY-start)/(entTime - startTime);
-        if(Math.abs(vy)>0.3){//惯性滚动
-            trans += vy*opt.inertia;
+        var coordinate = getStartAxis(e),vv = (coordinate-start)/(entTime - startTime);
+        if(Math.abs(vv)>0.3){//惯性滚动
+            trans += vv*opt.inertia;
         }else{
             opt.onChange.call($this);
         }
         if(trans > 0){
             trans = 0;
-        }else if(trans < height - scrollHeight){
-            trans = height -scrollHeight;
+        }else if(trans < range - scrollRange){
+
+            trans = range -scrollRange;
         }
         setTranslate(trans,opt.onChange);
         start = null;
     }
-    function getY(e){
+    function getStartAxis(e){
+        var name = "pageY";
+        if(opt.axis == "x"){
+            name = "pageX";
+        };
         if(e.touches){
-            return e.changedTouches[0].pageY;
+            return e.changedTouches[0][name];
         }else{
-            return e.pageY;
+            return e[name];
         }
     }
     function setTransition(time){
@@ -72,18 +86,26 @@ $.fn.scroll = function (options) {
         });
     };
     function setTranslate(diff,callback){
-        var dy = diff,bouce = 4;
+        var diff = diff,bouce = 4;
         if(opt.bounce){
-            if(dy>0){dy = dy/bouce};
-            if(dy < height-scrollHeight){dy =height - scrollHeight + (dy-(height - scrollHeight))/bouce};
+            if(diff>0){diff = diff/bouce};
+            if(diff < range-scrollRange){diff =range - scrollRange + (diff-(range - scrollRange))/bouce};
         }else{
-            if(dy>0){dy = 0};
-            if(dy < height-scrollHeight){dy = height-scrollHeight};
+            if(diff>0){diff = 0};
+            if(diff < range-scrollRange){diff = range-scrollRange};
         }
-        return $scroll.css({
-            '-webkit-transform': 'translate3d(0, '+dy+'px, 0)',
-            'transform': 'translate3d(0, '+dy+'px, 0)'
-        }).one("webkitTransitionEnd",function(){
+        if(opt.axis == "x"){
+            $scroll.css({
+                '-webkit-transform': 'translate3d('+diff+'px, 0, 0)',
+                'transform': 'translate3d('+diff+'px, 0, 0)'
+            })
+        }else{
+            $scroll.css({
+                '-webkit-transform': 'translate3d(0, '+diff+'px, 0)',
+                'transform': 'translate3d(0, '+diff+'px, 0)'
+            })
+        }
+        return $scroll.one("webkitTransitionEnd",function(){
             callback && callback.call($this);
         });
     };

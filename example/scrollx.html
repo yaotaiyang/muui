@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>按钮</title>
+    <link rel="stylesheet" href="../dist/css/muui.min.css">
+    <script src="../dist/js/zepto.min.js"></script>
+    <script src="../dist/js/muui.min.js"></script>
+    <style>
+        body{padding: 10px;}
+        .scroll-wrap{width: 100%;overflow: hidden;}
+        .btn-wrap{white-space: nowrap;}
+
+    </style>
+</head>
+<body>
+<h3>行内按钮</h3>
+<hr>
+<div class="scroll-wrap">
+    <div class="btn-wrap">
+        <div  data-ac="click-active" data-type="primary" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="danger" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="success" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="info" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="primary" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="danger" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="success" class="btn inline-block">行内按钮</div>
+        <div  data-ac="click-active" data-type="info" class="btn inline-block">行内按钮</div>
+    </div>
+</div>
+<br>
+<hr>
+
+<script>
+    $(".scroll-wrap").mscroll({axis:"x",bounce:1});
+</script>
+</body>
+</html>

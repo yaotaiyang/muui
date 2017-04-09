@@ -22,6 +22,6 @@ muui.pickermodal=function(option){
     $wrap.append(opt.html);
     $html.find(".modal-body").html($wrap);
     $html.mmodal(opt);
-    $html.find(".modal-dialog").scroll();
+    $html.find(".modal-dialog").mscroll();
     return $html;
 }
