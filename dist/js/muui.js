@@ -659,11 +659,11 @@ $.fn.refreshList = function(opt){
                 turned = 0;
                 return;
             }
-            if(transY >= opt.topHeight-1 && canReset == 0){
+            if(transY >= opt.topHeight-4 && canReset == 0){
                 opt.readyRefresh.call(listWrap);
                 $tDom.addClass("ready");
                 canReset = 1;
-            }else if(transY < opt.topHeight-1 && canReset==1){
+            }else if(transY < opt.topHeight-4 && canReset==1){//反向滑动4px才算取消
                 canReset = 0;
                 $tDom.removeClass("ready");
                 opt.resetRefresh.call(listWrap);
@@ -673,7 +673,7 @@ $.fn.refreshList = function(opt){
     }
     function ontouchend(e){
         setTransition(300);
-        if(transY >= opt.topHeight && canMove){
+        if(transY >= opt.topHeight-4 && canMove){
             $tDom.removeClass("ready");
             opt.refresh.call(listWrap);
         }
