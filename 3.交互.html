@@ -121,6 +121,12 @@
   </li>
 
   <li class="level_3">
+    <a href="#index_pickersidebar-侧面滑出操作栏" title="pickersidebar-侧面滑出操作栏">
+      <i class="icon-chevron-right"></i>pickersidebar-侧面滑出操作栏
+    </a>
+  </li>
+
+  <li class="level_3">
     <a href="#index_列表-下拉与上滑" title="列表-下拉与上滑">
       <i class="icon-chevron-right"></i>列表-下拉与上滑
     </a>
@@ -312,6 +318,16 @@ pickerpage.on(&quot;click&quot;,&quot;li&quot;,function(){
 var pickerpage = muui.pickerpage({
     html:$(&quot;#picker-ul&quot;).clone(),
     history:false,
+});   
+</code></pre><h3 id="pickersidebar-">pickersidebar-侧面滑出操作栏</h3>
+<pre><code>var pickersidebar =  muui.pickersidebar($(&quot;#picker-ul&quot;).clone());
+pickerpage.destory(); //关闭
+
+
+//当然,可以有更多设置
+var pickersidebar = muui.pickersidebar({
+    html:$(&quot;#picker-ul&quot;).clone(),
+    position:&quot;right&quot;
 });   
 </code></pre><h3 id="-">列表-下拉与上滑</h3>
 <pre><code>$(&quot;#list&quot;).refreshList({
