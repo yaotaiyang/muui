@@ -11,6 +11,7 @@
         body{padding: 10px;}
         body > .btn{margin: 5px 0;}
         #picker-ul{background-color: #fff;}
+        .picker-side-bar li{padding: 10px 6px!important;}
     </style>
 </head>
 <body>
@@ -23,10 +24,11 @@
     <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.loading({text:'加载中…',time:2000})">muui.loading()</div>
     <div data-ac="click-active" data-type="primary" class="btn" onclick="pickerpage()">muui.pickerpage()</div>
     <div data-ac="click-active" data-type="primary" class="btn" onclick="picker()">muui.pickermodal()</div>
+    <div data-ac="click-active" data-type="primary" class="btn" onclick="pickersidebar()">muui.pickersidebar()</div>
     <br>
     <div class="hide">
         <ul class="muui-list" id="list">
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -37,7 +39,112 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe721;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                        <div class="description line-clamp-2">CSS 类选择器 CSS 创建 对带有指定属性的 HTML 元素设置样式。 可以为拥有指定属性的 HTML 元素设置样式,而不仅限于</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe730;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe721;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                        <div class="description line-clamp-2">CSS 类选择器 CSS 创建 对带有指定属性的 HTML 元素设置样式。 可以为拥有指定属性的 HTML 元素设置样式,而不仅限于</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe730;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe721;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                        <div class="description line-clamp-2">CSS 类选择器 CSS 创建 对带有指定属性的 HTML 元素设置样式。 可以为拥有指定属性的 HTML 元素设置样式,而不仅限于</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe730;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe721;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                        <div class="description line-clamp-2">CSS 类选择器 CSS 创建 对带有指定属性的 HTML 元素设置样式。 可以为拥有指定属性的 HTML 元素设置样式,而不仅限于</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe730;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe721;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
+                <div class="muui-table">
+                    <div class="muui-cell">
+                        <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
+                        <div class="description line-clamp-2">CSS 类选择器 CSS 创建 对带有指定属性的 HTML 元素设置样式。 可以为拥有指定属性的 HTML 元素设置样式,而不仅限于</div>
+                    </div>
+                    <div class="muui-cell align-middle option-cell">
+                        <i class="muui-font">&#xe730;</i>
+                    </div>
+                </div>
+            </li>
+            <li class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -52,7 +159,7 @@
             </li>
         </ul>
         <ul class="muui-list" id="picker-ul">
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -62,7 +169,7 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -72,7 +179,7 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -83,12 +190,65 @@
                 </div>
             </li>
         </ul>
+        <ul class="muui-list picker-side-bar">
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                侧边栏滑动
+            </li>
+            <li class="muui-item muui-border">
+                <a href="http://www.baidu.com">百度</a>
+            </li>
+            <li>
+                <div data-dismiss="modal" data-type="primary" class="btn btn-sm">确 定</div>
+            </li>
+        </ul>
     </div>
     <script>
         function pickerpage(){
             muui.pickerpage({
                 html:$("#list").clone()
             });
+        }
+        function pickersidebar(){
+            muui.pickersidebar({html:$(".picker-side-bar").clone(),position:"right"});
         }
         function picker(){
             muui.pickermodal($("#picker-ul").clone())

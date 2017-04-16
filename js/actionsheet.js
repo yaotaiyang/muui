@@ -12,7 +12,7 @@
                         <li data-dismiss="modal" data-ac="click-active" class="btn btn-li border-1px">取消</li>\
                     </ul>';
     var opt = $.extend({
-        list:[{id:"btn-1",text:'测试按钮1'},{id:"btn-1",text:'测试按钮2'}],
+        list:[{id:"btn-1",text:'btn1'},{id:"btn-2",text:'btn2'}],
     },option);
     var render = template.compile(source),$html = $(render(opt));
     return muui.pickermodal($html);

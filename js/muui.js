@@ -36,7 +36,7 @@ muui样式库:https://github.com/yaotaiyang/muui
                         <li data-dismiss="modal" data-ac="click-active" class="btn btn-li border-1px">取消</li>\
                     </ul>';
     var opt = $.extend({
-        list:[{id:"btn-1",text:'测试按钮1'},{id:"btn-1",text:'测试按钮2'}],
+        list:[{id:"btn-1",text:'btn1'},{id:"btn-2",text:'btn2'}],
     },option);
     var render = template.compile(source),$html = $(render(opt));
     return muui.pickermodal($html);
@@ -545,61 +545,76 @@ $.fn.mmodal = function(option){
 }($);
 
 /**
- * Created by yaoxy on 2017/3/25.
- *
+ * Created by yaoxy on 2017/4/16.
  */
-muui.pickermodal=function(option){
-    var source = '<div class="modal muui-picker fade">\
+muui.picker=function(option){
+    var opt = $.extend({
+        container:"body",
+        html:"<div>html参数</div>",
+        beforerender:function(){},
+        history:true//默认hash处理,接管浏览器返回
+    },option);
+    var source = '<div class="modal fade {{classname}}">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body"></div>\
             </div>\
         </div>\
     </div>';
+    var render = template.compile(source),$wrap = $("<div class='picker-wrap'></div>"),$html = $(render(opt));
+    opt.beforerender.call($html);
+    $wrap.append(opt.html);
+    $html.find(".modal-body").html($wrap);
+    $html.on("shown",function(){
+        $html.find(".modal-dialog").mscroll();
+    });
+    $html.mmodal(opt);
+    return $html;
+}
+/**
+ * Created by yaoxy on 2017/3/25.
+ *
+ */
+muui.pickermodal=function(option){
     if(typeof option == "string" || $.zepto.isZ(option)){
         option = {html:option}
     }
     var opt = $.extend({
-        container:"body",
-        "html":"<div>传递参数:{html:'这里是要插入的内融通'}</div>",
-        "history":true//默认hash处理,接管浏览器返回
+        classname:"muui-picker-modal"
     },option);
-    var render = template.compile(source),$wrap = $("<div class='picker-wrap'></div>"),$html = $(render(opt));
-    $wrap.append(opt.html);
-    $html.find(".modal-body").html($wrap);
-    $html.mmodal(opt);
-    $html.find(".modal-dialog").mscroll();
-    return $html;
+    return muui.picker(opt);
 }
 /**
  * Created by yaoxy on 2017/3/22.
  * 滑动选择页
  */
 muui.pickerpage=function(option){
-    var source = '<div class="modal muui-pickerpage fade">\
-        <div class="modal-dialog">\
-            <div class="modal-content">\
-                <div class="modal-body"></div>\
-            </div>\
-        </div>\
-    </div>';
     if(typeof option == "string" || $.zepto.isZ(option)){
         option = {html:option}
     }
     var opt = $.extend({
-        container:"body",
-        "backdrop":false,
-        "html":"pickerPage 内容",
-        "history":true//默认hash处理,接管浏览器返回
+        classname:"muui-picker-page",
+        "backdrop":0
     },option);
-    var render = template.compile(source),$wrap = $("<div class='pickerpage-wrap'></div>");$html = $(render(opt));
-    $wrap.append(opt.html);
-    $html.find(".modal-body").html($wrap);
-    $html.mmodal(opt);
-    $html.find(".modal-dialog").mscroll();
-    return $html;
+   return muui.picker(opt);
 }
 
+/**
+ * Created by yaoxy on 2017/4/16.
+ */
+muui.pickersidebar=function(option){
+    if(typeof option == "string" || $.zepto.isZ(option)){
+        option = {html:option}
+    }
+    var opt = $.extend({
+        classname:"muui-picker-sidebar",
+        position:"left",
+        beforerender:function(){
+            $(this).addClass("position-"+opt.position);
+        }
+    },option);
+    return muui.picker(opt);
+}
 /**
  * Created by yaoxy on 2017/3/25.
  */
@@ -720,7 +735,7 @@ $.fn.mscroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
         onChange:function(){},// onChange回调
-        bounce:false,//是否有回弹
+        bounce:0,//是否有回弹
         axis:"y",//默认纵向滑动,x为横向滑动
         position:0,
         inertia:200  //惯性大小
@@ -761,7 +776,7 @@ $.fn.mscroll = function (options) {
         setTransition(opt.animationTime);
         var entTime = + new Date();
         var coordinate = getStartAxis(e),vv = (coordinate-start)/(entTime - startTime);
-        if(Math.abs(vv)>0.3){//惯性滚动
+        if(Math.abs(vv)>0.5){//惯性滚动
             trans += vv*opt.inertia;
         }else{
             opt.onChange.call($this);

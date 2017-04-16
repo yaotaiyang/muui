@@ -13,7 +13,7 @@ $.fn.mscroll = function (options) {
     var opt = $.extend({
         animationTime: 400, //惯性动画时间长度
         onChange:function(){},// onChange回调
-        bounce:false,//是否有回弹
+        bounce:0,//是否有回弹
         axis:"y",//默认纵向滑动,x为横向滑动
         position:0,
         inertia:200  //惯性大小
@@ -54,7 +54,7 @@ $.fn.mscroll = function (options) {
         setTransition(opt.animationTime);
         var entTime = + new Date();
         var coordinate = getStartAxis(e),vv = (coordinate-start)/(entTime - startTime);
-        if(Math.abs(vv)>0.3){//惯性滚动
+        if(Math.abs(vv)>0.5){//惯性滚动
             trans += vv*opt.inertia;
         }else{
             opt.onChange.call($this);
