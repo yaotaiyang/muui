@@ -16,16 +16,18 @@ $.fn.mscroll = function (options) {
         bounce:0,//是否有回弹
         axis:"y",//默认纵向滑动,x为横向滑动
         position:0,
+        offset:0,
         inertia:200  //惯性大小
     }, options);
     var $this = $(this),$scroll=$($this.children()[0]);
-    var start=null,moveEnd,trans= 0,startTime,scrollRange,range;
+    var start=null,moveEnd,trans= parseFloat(opt.offset),startTime,scrollRange,range;
     var event = muui.scrollEvent;
     getRange();
     $(window).on("resize",getRange);
     $this.on(event.start,funcStart);
     $this.on(event.move,funcMove);
     $this.on(event.end,funcEnd);
+    funcTrans(opt.offset);
     function getRange(){
         if(opt.axis == "x"){
             scrollRange = $this[0].scrollWidth;
@@ -94,6 +96,15 @@ $.fn.mscroll = function (options) {
             if(diff>0){diff = 0};
             if(diff < range-scrollRange){diff = range-scrollRange};
         }
+        $scroll.one("webkitTransitionEnd",function(){
+            callback && callback.call($this);
+        });
+        funcTrans(diff);
+        return $scroll;
+    };
+    function funcTrans(diff){
+        if(diff>0) diff = 0;
+        if(diff < range-scrollRange) diff = range - scrollRange;
         if(opt.axis == "x"){
             $scroll.css({
                 '-webkit-transform': 'translate3d('+diff+'px, 0, 0)',
@@ -105,8 +116,6 @@ $.fn.mscroll = function (options) {
                 'transform': 'translate3d(0, '+diff+'px, 0)'
             })
         }
-        return $scroll.one("webkitTransitionEnd",function(){
-            callback && callback.call($this);
-        });
-    };
+        $this.data("mscroll",{offset:diff});
+    }
 };

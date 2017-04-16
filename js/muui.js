@@ -633,6 +633,8 @@ $.fn.refreshList = function(opt){
     var $loadmore = $('<div class="muui-list-loadmore align-center"><i class="muui-loading-icon"></i><span class="text">加载中…</span></div>');
     var listWrap = $(this);
     listWrap.after($loadmore);
+    listWrap.on("refresh",opt.refresh);
+    listWrap.on("addData",opt.addData);
     var tDom =$tDom, bDom = $loadmore,scrollWrap= $(opt.scrollWrap),startY = 0,transY= 0,canMove=0,canReset = 0,moveMaxY= 0,turned=0,ids = [];
     if(opt.scrollWrap == window){
         scrollWrap = $(window.document.body);
@@ -642,6 +644,7 @@ $.fn.refreshList = function(opt){
         listWrap.on("touchstart",ontouchstart).on("touchmove",ontouchmove).on("touchend",ontouchend);
     }
     $(opt.scrollWrap).on("scroll",onscroll).trigger("scroll");
+    return listWrap;
     function ontouchstart(e){
         startY = e.touches[0].pageY;
         transY = canReset = moveMaxY = turned= canMove  = 0;
@@ -738,16 +741,18 @@ $.fn.mscroll = function (options) {
         bounce:0,//是否有回弹
         axis:"y",//默认纵向滑动,x为横向滑动
         position:0,
+        offset:0,
         inertia:200  //惯性大小
     }, options);
     var $this = $(this),$scroll=$($this.children()[0]);
-    var start=null,moveEnd,trans= 0,startTime,scrollRange,range;
+    var start=null,moveEnd,trans= parseFloat(opt.offset),startTime,scrollRange,range;
     var event = muui.scrollEvent;
     getRange();
     $(window).on("resize",getRange);
     $this.on(event.start,funcStart);
     $this.on(event.move,funcMove);
     $this.on(event.end,funcEnd);
+    funcTrans(opt.offset);
     function getRange(){
         if(opt.axis == "x"){
             scrollRange = $this[0].scrollWidth;
@@ -816,6 +821,15 @@ $.fn.mscroll = function (options) {
             if(diff>0){diff = 0};
             if(diff < range-scrollRange){diff = range-scrollRange};
         }
+        $scroll.one("webkitTransitionEnd",function(){
+            callback && callback.call($this);
+        });
+        funcTrans(diff);
+        return $scroll;
+    };
+    function funcTrans(diff){
+        if(diff>0) diff = 0;
+        if(diff < range-scrollRange) diff = range - scrollRange;
         if(opt.axis == "x"){
             $scroll.css({
                 '-webkit-transform': 'translate3d('+diff+'px, 0, 0)',
@@ -827,10 +841,8 @@ $.fn.mscroll = function (options) {
                 'transform': 'translate3d(0, '+diff+'px, 0)'
             })
         }
-        return $scroll.one("webkitTransitionEnd",function(){
-            callback && callback.call($this);
-        });
-    };
+        $this.data("mscroll",{offset:diff});
+    }
 };
 /**
  * Created by yaoxy on 2017/3/24.

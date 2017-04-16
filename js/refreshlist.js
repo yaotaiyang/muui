@@ -16,6 +16,8 @@ $.fn.refreshList = function(opt){
     var $loadmore = $('<div class="muui-list-loadmore align-center"><i class="muui-loading-icon"></i><span class="text">加载中…</span></div>');
     var listWrap = $(this);
     listWrap.after($loadmore);
+    listWrap.on("refresh",opt.refresh);
+    listWrap.on("addData",opt.addData);
     var tDom =$tDom, bDom = $loadmore,scrollWrap= $(opt.scrollWrap),startY = 0,transY= 0,canMove=0,canReset = 0,moveMaxY= 0,turned=0,ids = [];
     if(opt.scrollWrap == window){
         scrollWrap = $(window.document.body);
@@ -25,6 +27,7 @@ $.fn.refreshList = function(opt){
         listWrap.on("touchstart",ontouchstart).on("touchmove",ontouchmove).on("touchend",ontouchend);
     }
     $(opt.scrollWrap).on("scroll",onscroll).trigger("scroll");
+    return listWrap;
     function ontouchstart(e){
         startY = e.touches[0].pageY;
         transY = canReset = moveMaxY = turned= canMove  = 0;
