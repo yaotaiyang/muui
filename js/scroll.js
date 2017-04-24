@@ -27,7 +27,7 @@ $.fn.mscroll = function (options) {
     $this.on(event.start,funcStart);
     $this.on(event.move,funcMove);
     $this.on(event.end,funcEnd);
-    funcTrans(opt.offset);
+    funcTrans(opt.offset,1);
     function getRange(){
         if(opt.axis == "x"){
             scrollRange = $this[0].scrollWidth;
@@ -102,9 +102,11 @@ $.fn.mscroll = function (options) {
         funcTrans(diff);
         return $scroll;
     };
-    function funcTrans(diff){
-        if(diff>0) diff = 0;
-        if(diff < range-scrollRange) diff = range - scrollRange;
+    function funcTrans(diff,check){
+        if(check){
+            if(diff>0) diff = 0;
+            if(diff < range-scrollRange) diff = range - scrollRange;
+        }
         if(opt.axis == "x"){
             $scroll.css({
                 '-webkit-transform': 'translate3d('+diff+'px, 0, 0)',
