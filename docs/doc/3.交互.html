@@ -109,20 +109,20 @@
   </li>
 
   <li class="level_3">
-    <a href="#index_pickermodal-底部弹出内容" title="pickermodal-底部弹出内容">
-      <i class="icon-chevron-right"></i>pickermodal-底部弹出内容
+    <a href="#index_pickermodal-底部弹出" title="pickermodal-底部弹出">
+      <i class="icon-chevron-right"></i>pickermodal-底部弹出
     </a>
   </li>
 
   <li class="level_3">
-    <a href="#index_pickerpage-侧面滑出整屏" title="pickerpage-侧面滑出整屏">
-      <i class="icon-chevron-right"></i>pickerpage-侧面滑出整屏
+    <a href="#index_pickerpage-侧滑整屏" title="pickerpage-侧滑整屏">
+      <i class="icon-chevron-right"></i>pickerpage-侧滑整屏
     </a>
   </li>
 
   <li class="level_3">
-    <a href="#index_pickersidebar-侧面滑出操作栏" title="pickersidebar-侧面滑出操作栏">
-      <i class="icon-chevron-right"></i>pickersidebar-侧面滑出操作栏
+    <a href="#index_pickersidebar-侧滑操作栏" title="pickersidebar-侧滑操作栏">
+      <i class="icon-chevron-right"></i>pickersidebar-侧滑操作栏
     </a>
   </li>
 
@@ -291,7 +291,7 @@ loading.on(&quot;hiden&quot;,function(){});//关闭完时
 
 //当然,你也可以简写
 var loading = muui.loading(&quot;是否确认?&quot;);
-</code></pre><h3 id="pickermodal-">pickermodal-底部弹出内容</h3>
+</code></pre><h3 id="pickermodal-">pickermodal-底部弹出</h3>
 <pre><code>var pickermodal =  muui.pickermodal($(&quot;#picker-ul&quot;).clone());
 pickermodal.destory(); //关闭
 pickermodal.on(&quot;hide&quot;,function(){});//关闭时
@@ -305,7 +305,7 @@ var pickermodal = muui.pickermodal({
     html:$(&quot;#picker-ul&quot;).clone(),
     history:false,
 });          
-</code></pre><h3 id="pickerpage-">pickerpage-侧面滑出整屏</h3>
+</code></pre><h3 id="pickerpage-">pickerpage-侧滑整屏</h3>
 <pre><code>var pickerpage =  muui.pickerpage($(&quot;#picker-ul&quot;).clone());
 pickerpage.destory(); //关闭
 pickerpage.on(&quot;hide&quot;,function(){});//关闭时
@@ -319,7 +319,7 @@ var pickerpage = muui.pickerpage({
     html:$(&quot;#picker-ul&quot;).clone(),
     history:false,
 });   
-</code></pre><h3 id="pickersidebar-">pickersidebar-侧面滑出操作栏</h3>
+</code></pre><h3 id="pickersidebar-">pickersidebar-侧滑操作栏</h3>
 <pre><code>var pickersidebar =  muui.pickersidebar($(&quot;#picker-ul&quot;).clone());
 pickerpage.destory(); //关闭
 
