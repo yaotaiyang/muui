@@ -29,11 +29,11 @@ muui样式库:https://github.com/yaotaiyang/muui
 ;muui.actionsheet = function(option){
     var source = '<ul class="muui-actionsheet-ul">\
                     {{each list as item key}}\
-                    <li muui-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border muui-ui-li">{{item.text}}</li>\
+                    <li muui-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="muui-btn muui-border muui-ui-li">{{item.text}}</li>\
                     {{/each}}\
                     </ul>\
                     <ul class="muui-actionsheet-ul">\
-                        <li data-dismiss="muui-modal" muui-ac="click-active" class="btn btn-li border-1px">取消</li>\
+                        <li data-dismiss="muui-modal" muui-ac="click-active" class="muui-btn btn-li border-1px">取消</li>\
                     </ul>';
     var opt = $.extend({
         list:[{id:"btn-1",text:'btn1'},{id:"btn-2",text:'btn2'}],
@@ -118,7 +118,7 @@ muui.confirm=function(option){
             </div>\
         <div class="modal-footer">\
         {{each btns as btn key}}\
-            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" muui-ac="click-active" {{if btn.close}}data-dismiss="muui-modal"{{/if}}>{{btn.text}}</div>\
+            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="muui-btn muui-border" muui-ac="click-active" {{if btn.close}}data-dismiss="muui-modal"{{/if}}>{{btn.text}}</div>\
         {{/each}}\
         </div>\
     </div>';

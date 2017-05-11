@@ -11,7 +11,7 @@
             </div>\
         <div class="modal-footer">\
         {{each btns as btn key}}\
-            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" muui-ac="click-active" {{if btn.close}}data-dismiss="muui-modal"{{/if}}>{{btn.text}}</div>\
+            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="muui-btn muui-border" muui-ac="click-active" {{if btn.close}}data-dismiss="muui-modal"{{/if}}>{{btn.text}}</div>\
         {{/each}}\
         </div>\
     </div>';
