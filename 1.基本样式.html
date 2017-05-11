@@ -230,14 +230,14 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
 <h3 id="-">文字截取</h3>
 <p> 文字截取省略号,通过样式 <code>.line-clamp-1</code>,<code>.line-clamp-2</code>,<code>.line-clamp-3</code>,<code>.line-clamp-4</code>进行多行截取</p>
 <pre><code>&lt;ul class=&quot;muui-list&quot;&gt;     
-  &lt;li data-ac=&quot;click-active&quot; class=&quot;muui-item muui-border&quot;&gt;
+  &lt;li muui-ac=&quot;click-active&quot; class=&quot;muui-item muui-border&quot;&gt;
      &lt;div class=&quot;muui-table&quot;&gt;
         &lt;div class=&quot;muui-cell&quot;&gt;
           &lt;div class=&quot;main-info line-clamp-1&quot;&gt;单行截取 line-clamp-1:用来限制在一个块元素显示的文本的行数&lt;/div&gt;
         &lt;/div&gt;
      &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li data-ac=&quot;click-active&quot; class=&quot;muui-item muui-border&quot;&gt;
+  &lt;li muui-ac=&quot;click-active&quot; class=&quot;muui-item muui-border&quot;&gt;
      &lt;div class=&quot;muui-table&quot;&gt;
        &lt;div class=&quot;muui-cell&quot;&gt;
           &lt;div class=&quot;main-info line-clamp-2&quot;&gt;2行截取 line-clamp-2:用来限制在一个块元素显示的文本的行数。 &lt;/div&gt;
@@ -246,7 +246,7 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
   &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre><h3 id="-">点击态</h3>
-<p> 移动短操作中,常常要点击时获得反馈,传统的active在移动端有些许兼容性不好,故mmui用js实现了一个.用属性<code>data-ac=&quot;xxx&quot;</code> 来实现,当有该属性的dom,被点击时,点击的瞬间,dom的class上,会被加上data-ac的属性值.全局上自定义了<code>data-ac=&quot;click-active&quot;</code>属性,如果需要点击态效果,在dom上添加该属性和值即可.具体查看demo:(请开启浏览器的手机模拟查看点击效果,或用手机扫码以下二维码,列表点按钮等,皆有点击态效果) </p>
+<p> 移动短操作中,常常要点击时获得反馈,传统的active在移动端有些许兼容性不好,故mmui用js实现了一个.用属性<code>muui-ac=&quot;xxx&quot;</code> 来实现,当有该属性的dom,被点击时,点击的瞬间,dom的class上,会被加上muui-ac的属性值.全局上自定义了<code>muui-ac=&quot;click-active&quot;</code>属性,如果需要点击态效果,在dom上添加该属性和值即可.具体查看demo:(请开启浏览器的手机模拟查看点击效果,或用手机扫码以下二维码,列表点按钮等,皆有点击态效果) </p>
 <p> <a href="https://yaotaiyang.github.io/muui/example/">https://yaotaiyang.github.io/muui/example/</a></p>
 <p><img src="assets/image/muui.png"/></p>
 <pre><code> &lt;style&gt;
@@ -254,7 +254,7 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
  &lt;/style&gt;
  ……
  &lt;div class=&quot;demo-active&quot;&gt;
-     &lt;div data-ac=&#39;active-color&#39;&gt;点击我,将会被加上class‘active-color’&lt;/div&gt;
+     &lt;div muui-ac=&#39;active-color&#39;&gt;点击我,将会被加上class‘active-color’&lt;/div&gt;
  &lt;/div&gt;
 </code></pre>
       </section>
