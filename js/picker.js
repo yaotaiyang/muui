@@ -8,7 +8,7 @@ muui.picker=function(option){
         beforerender:function(){},
         history:true//默认hash处理,接管浏览器返回
     },option);
-    var source = '<div class="modal fade {{classname}}">\
+    var source = '<div class="muui-modal fade {{classname}}">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body"></div>\

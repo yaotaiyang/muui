@@ -16,33 +16,33 @@
 <body>
     <h3>正常按钮</h3>
     <hr>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.actionsheet()">muui.actionsheet()</div>
-    <div data-ac="click-active" data-type="danger" class="btn" onclick="muui.alert('xxxxxx')">muui.alert()</div>
-    <div data-ac="click-active" data-type="success" class="btn" onclick="muui.confirm('xxxxxx')">muui.confirm()</div>
-    <div data-ac="click-active" data-type="warning" class="btn" onclick="muui.toast('哈哈,测试')">muui.toast()</div>
-    <div data-ac="click-active" data-type="info" class="btn" onclick="muui.loading({text:'加载中…',time:2000})">muui.loading()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="pickerpage()">muui.pickerpage()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="picker()">muui.pickermodal()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.actionsheet()">muui.actionsheet()</div>
+    <div muui-ac="click-active" data-type="danger" class="btn" onclick="muui.alert('xxxxxx')">muui.alert()</div>
+    <div muui-ac="click-active" data-type="success" class="btn" onclick="muui.confirm('xxxxxx')">muui.confirm()</div>
+    <div muui-ac="click-active" data-type="warning" class="btn" onclick="muui.toast('哈哈,测试')">muui.toast()</div>
+    <div muui-ac="click-active" data-type="info" class="btn" onclick="muui.loading({text:'加载中…',time:2000})">muui.loading()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="pickerpage()">muui.pickerpage()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="picker()">muui.pickermodal()</div>
     <br>
     <h3>行内按钮</h3>
     <hr>
-    <div  data-ac="click-active" data-type="primary" class="btn inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="danger" class="btn inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="success" class="btn inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="info" class="btn inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="primary" class="btn inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="danger" class="btn inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="success" class="btn inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="info" class="btn inline-block">行内按钮</div>
     <br>
     <br>
     <h3>小按钮</h3>
     <hr>
-    <div  data-ac="click-active" data-type="primary" class="btn btn-sm inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="danger" class="btn btn-sm inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="success" class="btn btn-sm inline-block">行内按钮</div>
-    <div  data-ac="click-active" data-type="info" class="btn btn-sm inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="primary" class="btn btn-sm inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="danger" class="btn btn-sm inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="success" class="btn btn-sm inline-block">行内按钮</div>
+    <div  muui-ac="click-active" data-type="info" class="btn btn-sm inline-block">行内按钮</div>
     <br>
     <hr>
     <div class="hide">
         <ul class="muui-list" id="list">
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li muui-ac="click-active" class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li muui-ac="click-active" class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-2">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -64,11 +64,11 @@
                 </div>
             </li>
             <li style="margin: 12px;">
-                <div data-dismiss="modal" data-type="primary" class="btn">确 定</div>
+                <div data-dismiss="muui-modal" data-type="primary" class="btn">确 定</div>
             </li>
         </ul>
         <ul class="muui-list" id="picker-ul">
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li muui-ac="click-active" class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li muui-ac="click-active" class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </li>
-            <li data-ac="click-active" class="muui-item muui-border">
+            <li muui-ac="click-active" class="muui-item muui-border">
                 <div class="muui-table">
                     <div class="muui-cell">
                         <div class="main-info line-clamp-1">3行截取 line-clamp-3:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>

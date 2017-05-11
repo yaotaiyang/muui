@@ -17,14 +17,14 @@
 <body>
     <h3>常用行为</h3>
     <hr>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.actionsheet()">muui.actionsheet()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.alert('xxxxxx')">muui.alert()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.confirm('xxxxxx')">muui.confirm()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.toast('哈哈,测试')">muui.toast()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="muui.loading({text:'加载中…',time:2000})">muui.loading()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="pickerpage()">muui.pickerpage()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="picker()">muui.pickermodal()</div>
-    <div data-ac="click-active" data-type="primary" class="btn" onclick="pickersidebar()">muui.pickersidebar()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.actionsheet()">muui.actionsheet()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.alert('xxxxxx')">muui.alert()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.confirm('xxxxxx')">muui.confirm()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.toast('哈哈,测试')">muui.toast()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="muui.loading({text:'加载中…',time:2000})">muui.loading()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="pickerpage()">muui.pickerpage()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="picker()">muui.pickermodal()</div>
+    <div muui-ac="click-active" data-type="primary" class="btn" onclick="pickersidebar()">muui.pickersidebar()</div>
     <br>
     <div class="hide">
         <ul class="muui-list" id="list">
@@ -155,7 +155,7 @@
                 </div>
             </li>
             <li style="margin: 12px;">
-                <div data-dismiss="modal" data-type="primary" class="btn">确 定</div>
+                <div data-dismiss="muui-modal" data-type="primary" class="btn">确 定</div>
             </li>
         </ul>
         <ul class="muui-list" id="picker-ul">
@@ -237,7 +237,7 @@
                 <a href="http://www.baidu.com">百度</a>
             </li>
             <li>
-                <div data-dismiss="modal" data-type="primary" class="btn btn-sm">确 定</div>
+                <div data-dismiss="muui-modal" data-type="primary" class="btn btn-sm">确 定</div>
             </li>
         </ul>
     </div>

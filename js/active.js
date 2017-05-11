@@ -3,8 +3,8 @@
  */
 $(function(){
     var idarr = [], arr_acdom = [];
-    $("body").delegate("*[data-ac]", "touchstart", function (e) {
-        var me = $(this), klass = me.data("ac");
+    $("body").delegate("*[muui-ac]", "touchstart", function (e) {
+        var me = $(this), klass = me.attr("muui-ac");
         idarr.push(setTimeout(function () {
             me.addClass(klass);
             arr_acdom.push(me);
@@ -18,13 +18,13 @@ $(function(){
         cleardd();
         setTimeout(function () {
             for (var i = 0; i < arr_acdom.length; i++) {
-                arr_acdom[i].removeClass(arr_acdom[i].data("ac"));
+                arr_acdom[i].removeClass(arr_acdom[i].attr("muui-ac"));
             }
             arr_acdom = [];
         }, 300);
     });
-    $("body").delegate("*[data-ac]", "tap", function (e) {
-        var me = $(this), klass = me.data("ac");
+    $("body").delegate("*[muui-ac]", "tap", function (e) {
+        var me = $(this), klass = me.attr("muui-ac");
         me.addClass(klass);
         me.trigger("click-active");
         setTimeout(function () {

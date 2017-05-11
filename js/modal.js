@@ -2,8 +2,8 @@
     var Modal = function (element, options) {
         this.options = options
         this.$element = $(element)
-            .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-        this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
+            .delegate('[data-dismiss="muui-modal"]', 'click.dismiss.muui-modal', $.proxy(this.hide, this))
+        this.options.remote && this.$element.find('.muui-modal-body').load(this.options.remote)
     }
 
     Modal.prototype = {
@@ -67,7 +67,7 @@
 
             this.escape()
 
-            $(document).off('focusin.modal')
+            $(document).off('focusin.muui-modal')
 
             this.$element
                 .removeClass('in')
@@ -80,7 +80,7 @@
 
         , enforceFocus: function () {
             var that = this
-            $(document).on('focusin.modal', function (e) {
+            $(document).on('focusin.muui-modal', function (e) {
                 if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
                     that.$element.focus()
                 }
@@ -90,11 +90,11 @@
         , escape: function () {
             var that = this
             if (this.isShown && this.options.keyboard) {
-                this.$element.on('keyup.dismiss.modal', function ( e ) {
+                this.$element.on('keyup.dismiss.muui-modal', function ( e ) {
                     e.which == 27 && that.hide()
                 })
             } else if (!this.isShown) {
-                this.$element.off('keyup.dismiss.modal')
+                this.$element.off('keyup.dismiss.muui-modal')
             }
         }
 
@@ -132,7 +132,7 @@
             if (this.isShown && this.options.backdrop) {
                 var doAnimate = $.support.transition && animate
 
-                this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+                this.$backdrop = $('<div class="muui-modal-backdrop ' + animate + '" />')
                     .appendTo(document.body)
 
                 this.$backdrop.click(
@@ -168,45 +168,45 @@
     /* MODAL PLUGIN DEFINITION
      * ======================= */
 
-    var old = $.fn.modal
+    var old = $.fn.muuiModal
 
-    $.fn.modal = function (option) {
+    $.fn.muuiModal = function (option) {
         return this.each(function () {
             var $this = $(this)
-                , data = $this.data('modal')
-                , options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option)
-            if (!data) $this.data('modal', (data = new Modal(this, options)))
+                , data = $this.data('muui-modal')
+                , options = $.extend({}, $.fn.muuiModal.defaults, $this.data(), typeof option == 'object' && option)
+            if (!data) $this.data('muui-modal', (data = new Modal(this, options)))
             if (typeof option == 'string') data[option]()
             else if (options.show) data.show()
         })
     }
 
-    $.fn.modal.defaults = {
+    $.fn.muuiModal.defaults = {
         backdrop: true
         , keyboard: true
         , show: true
     }
 
-    $.fn.modal.Constructor = Modal
+    $.fn.muuiModal.Constructor = Modal;
     /* MODAL NO CONFLICT
      * ================= */
-    $.fn.modal.noConflict = function () {
-        $.fn.modal = old
+    $.fn.muuiModal.noConflict = function () {
+        $.fn.muuiModal = old
         return this
     }
     /* MODAL DATA-API
      * ============== */
 
-    $(document).on('click.modal.data-api', '[data-toggle="modal"]', function (e) {
+    $(document).on('click.muui-modal.data-api', '[data-toggle="muui-modal"]', function (e) {
         var $this = $(this)
             , href = $this.attr('href')
             , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
-            , option = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
+            , option = $target.data('muui-modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
 
         e.preventDefault()
 
         $target
-            .modal(option)
+            .muuiModal(option)
             .one('hide', function () {
                 $this.focus()
             })

@@ -14,9 +14,7 @@ $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回�
 });
 $.fn.destory = function(){
     var $html = $(this);
-    //if($html.data("modal")){
-        $html.modal('hide');
-    //}
+    $html.muuiModal('hide');
 };
 $.fn.mmodal = function(option){
     var $html = $(this),guid= muui.guid(),modal_id = "muuimodal-"+guid;
@@ -29,14 +27,14 @@ $.fn.mmodal = function(option){
     if(opt.history){
         muui.hash.setHash(modal_id,1);
     }
-    $html.modal(opt);
-    var $backdrop = $html.data("modal").$backdrop;
+    $html.muuiModal(opt);
+    var $backdrop = $html.data("muui-modal").$backdrop;
     $backdrop && $backdrop.on("touchmove",function(e){e.preventDefault();e.stopPropagation()});
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
         if(newUrl && oldUrl && muui.hash.getHashObj(oldUrl)[modal_id]==1&&muui.hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
-            $html.data('hide-type','navigate-back').modal('hide');
+            $html.data('hide-type','navigate-back').muuiModal('hide');
         }else{
             $html.data('hide-type','normal');
         }

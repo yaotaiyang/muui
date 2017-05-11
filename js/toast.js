@@ -2,7 +2,7 @@
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.toast = function(option){
-    var source = '<div class="modal muui-fixed-center muui-toast fade {{position}}" style="width:{{width}}">\
+    var source = '<div class="muui-modal muui-fixed-center muui-toast fade {{position}}" style="width:{{width}}">\
             <div class="modal-body">\
                 <p>{{text}}</p>\
             </div>\
@@ -23,7 +23,7 @@
     $html.mmodal(opt);
     if(opt.time){
         setTimeout(function(){//关闭浮层
-            $html.modal("hide");
+            $html.muuiModal("hide");
         },opt.time);
     }
     return $html;

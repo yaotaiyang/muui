@@ -2,7 +2,7 @@
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.loading = function(option){
-    var source = '<div class="modal muui-fixed-center muui-loading" style="width:{{width}}">\
+    var source = '<div class="muui-modal muui-fixed-center muui-loading" style="width:{{width}}">\
             <div class="modal-body align-center">\
                 <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
@@ -21,10 +21,10 @@
     },option);
     var render = template.compile(source),$html = $(render(opt));
     $html.mmodal(opt);
-    $html.data("modal").$backdrop.css({"background-color":"transparent"});
+    $html.data("muui-modal").$backdrop.css({"background-color":"transparent"});
     if(opt.time){
         setTimeout(function(){//关闭浮层
-            $html.modal("hide");
+            $html.muuiModal("hide");
         },opt.time);
     }
     return $html;

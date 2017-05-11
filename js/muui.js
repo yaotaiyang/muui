@@ -29,11 +29,11 @@ muui样式库:https://github.com/yaotaiyang/muui
 ;muui.actionsheet = function(option){
     var source = '<ul class="muui-actionsheet-ul">\
                     {{each list as item key}}\
-                    <li data-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border muui-ui-li">{{item.text}}</li>\
+                    <li muui-ac="click-active" {{each item as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border muui-ui-li">{{item.text}}</li>\
                     {{/each}}\
                     </ul>\
                     <ul class="muui-actionsheet-ul">\
-                        <li data-dismiss="modal" data-ac="click-active" class="btn btn-li border-1px">取消</li>\
+                        <li data-dismiss="muui-modal" muui-ac="click-active" class="btn btn-li border-1px">取消</li>\
                     </ul>';
     var opt = $.extend({
         list:[{id:"btn-1",text:'btn1'},{id:"btn-2",text:'btn2'}],
@@ -46,8 +46,8 @@ muui样式库:https://github.com/yaotaiyang/muui
  */
 $(function(){
     var idarr = [], arr_acdom = [];
-    $("body").delegate("*[data-ac]", "touchstart", function (e) {
-        var me = $(this), klass = me.data("ac");
+    $("body").delegate("*[muui-ac]", "touchstart", function (e) {
+        var me = $(this), klass = me.attr("muui-ac");
         idarr.push(setTimeout(function () {
             me.addClass(klass);
             arr_acdom.push(me);
@@ -61,13 +61,13 @@ $(function(){
         cleardd();
         setTimeout(function () {
             for (var i = 0; i < arr_acdom.length; i++) {
-                arr_acdom[i].removeClass(arr_acdom[i].data("ac"));
+                arr_acdom[i].removeClass(arr_acdom[i].attr("muui-ac"));
             }
             arr_acdom = [];
         }, 300);
     });
-    $("body").delegate("*[data-ac]", "tap", function (e) {
-        var me = $(this), klass = me.data("ac");
+    $("body").delegate("*[muui-ac]", "tap", function (e) {
+        var me = $(this), klass = me.attr("muui-ac");
         me.addClass(klass);
         me.trigger("click-active");
         setTimeout(function () {
@@ -109,7 +109,7 @@ muui.confirm=function(option){
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.dialog = function(option){
-    var source = '<div class="modal muui-dialog muui-fixed-center fade" style="width:{{width}}">\
+    var source = '<div class="muui-modal muui-dialog muui-fixed-center fade" style="width:{{width}}">\
         <div class="modal-header">\
             <h3>{{title}}</h3>\
         </div>\
@@ -118,7 +118,7 @@ muui.confirm=function(option){
             </div>\
         <div class="modal-footer">\
         {{each btns as btn key}}\
-            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" data-ac="click-active" {{if btn.close}}data-dismiss="modal"{{/if}}>{{btn.text}}</div>\
+            <div {{each btn as val kkey}}data-{{kkey}}="{{val}}"{{/each}} class="btn muui-border" muui-ac="click-active" {{if btn.close}}data-dismiss="muui-modal"{{/if}}>{{btn.text}}</div>\
         {{/each}}\
         </div>\
     </div>';
@@ -246,7 +246,7 @@ muui.confirm=function(option){
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.loading = function(option){
-    var source = '<div class="modal muui-fixed-center muui-loading" style="width:{{width}}">\
+    var source = '<div class="muui-modal muui-fixed-center muui-loading" style="width:{{width}}">\
             <div class="modal-body align-center">\
                 <i class="muui-loading-icon"></i>\
                 <p>{{text}}</p>\
@@ -265,10 +265,10 @@ muui.confirm=function(option){
     },option);
     var render = template.compile(source),$html = $(render(opt));
     $html.mmodal(opt);
-    $html.data("modal").$backdrop.css({"background-color":"transparent"});
+    $html.data("muui-modal").$backdrop.css({"background-color":"transparent"});
     if(opt.time){
         setTimeout(function(){//关闭浮层
-            $html.modal("hide");
+            $html.muuiModal("hide");
         },opt.time);
     }
     return $html;
@@ -289,9 +289,7 @@ $(window).on("pageshow",function(e){//公共处理出现modal后刷新的返回�
 });
 $.fn.destory = function(){
     var $html = $(this);
-    //if($html.data("modal")){
-        $html.modal('hide');
-    //}
+    $html.muuiModal('hide');
 };
 $.fn.mmodal = function(option){
     var $html = $(this),guid= muui.guid(),modal_id = "muuimodal-"+guid;
@@ -304,14 +302,14 @@ $.fn.mmodal = function(option){
     if(opt.history){
         muui.hash.setHash(modal_id,1);
     }
-    $html.modal(opt);
-    var $backdrop = $html.data("modal").$backdrop;
+    $html.muuiModal(opt);
+    var $backdrop = $html.data("muui-modal").$backdrop;
     $backdrop && $backdrop.on("touchmove",function(e){e.preventDefault();e.stopPropagation()});
     $(window).on("hashchange",function(e){
         if(!opt.history) return;
         var newUrl = e.newURL,oldUrl = e.oldURL;
         if(newUrl && oldUrl && muui.hash.getHashObj(oldUrl)[modal_id]==1&&muui.hash.getHashObj(newUrl)[modal_id]==undefined){//老地址有hash,新地址没有hash,表示返回了
-            $html.data('hide-type','navigate-back').modal('hide');
+            $html.data('hide-type','navigate-back').muuiModal('hide');
         }else{
             $html.data('hide-type','normal');
         }
@@ -333,8 +331,8 @@ $.fn.mmodal = function(option){
     var Modal = function (element, options) {
         this.options = options
         this.$element = $(element)
-            .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-        this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
+            .delegate('[data-dismiss="muui-modal"]', 'click.dismiss.muui-modal', $.proxy(this.hide, this))
+        this.options.remote && this.$element.find('.muui-modal-body').load(this.options.remote)
     }
 
     Modal.prototype = {
@@ -398,7 +396,7 @@ $.fn.mmodal = function(option){
 
             this.escape()
 
-            $(document).off('focusin.modal')
+            $(document).off('focusin.muui-modal')
 
             this.$element
                 .removeClass('in')
@@ -411,7 +409,7 @@ $.fn.mmodal = function(option){
 
         , enforceFocus: function () {
             var that = this
-            $(document).on('focusin.modal', function (e) {
+            $(document).on('focusin.muui-modal', function (e) {
                 if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
                     that.$element.focus()
                 }
@@ -421,11 +419,11 @@ $.fn.mmodal = function(option){
         , escape: function () {
             var that = this
             if (this.isShown && this.options.keyboard) {
-                this.$element.on('keyup.dismiss.modal', function ( e ) {
+                this.$element.on('keyup.dismiss.muui-modal', function ( e ) {
                     e.which == 27 && that.hide()
                 })
             } else if (!this.isShown) {
-                this.$element.off('keyup.dismiss.modal')
+                this.$element.off('keyup.dismiss.muui-modal')
             }
         }
 
@@ -463,7 +461,7 @@ $.fn.mmodal = function(option){
             if (this.isShown && this.options.backdrop) {
                 var doAnimate = $.support.transition && animate
 
-                this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+                this.$backdrop = $('<div class="muui-modal-backdrop ' + animate + '" />')
                     .appendTo(document.body)
 
                 this.$backdrop.click(
@@ -499,45 +497,45 @@ $.fn.mmodal = function(option){
     /* MODAL PLUGIN DEFINITION
      * ======================= */
 
-    var old = $.fn.modal
+    var old = $.fn.muuiModal
 
-    $.fn.modal = function (option) {
+    $.fn.muuiModal = function (option) {
         return this.each(function () {
             var $this = $(this)
-                , data = $this.data('modal')
-                , options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option)
-            if (!data) $this.data('modal', (data = new Modal(this, options)))
+                , data = $this.data('muui-modal')
+                , options = $.extend({}, $.fn.muuiModal.defaults, $this.data(), typeof option == 'object' && option)
+            if (!data) $this.data('muui-modal', (data = new Modal(this, options)))
             if (typeof option == 'string') data[option]()
             else if (options.show) data.show()
         })
     }
 
-    $.fn.modal.defaults = {
+    $.fn.muuiModal.defaults = {
         backdrop: true
         , keyboard: true
         , show: true
     }
 
-    $.fn.modal.Constructor = Modal
+    $.fn.muuiModal.Constructor = Modal;
     /* MODAL NO CONFLICT
      * ================= */
-    $.fn.modal.noConflict = function () {
-        $.fn.modal = old
+    $.fn.muuiModal.noConflict = function () {
+        $.fn.muuiModal = old
         return this
     }
     /* MODAL DATA-API
      * ============== */
 
-    $(document).on('click.modal.data-api', '[data-toggle="modal"]', function (e) {
+    $(document).on('click.muui-modal.data-api', '[data-toggle="muui-modal"]', function (e) {
         var $this = $(this)
             , href = $this.attr('href')
             , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
-            , option = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
+            , option = $target.data('muui-modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
 
         e.preventDefault()
 
         $target
-            .modal(option)
+            .muuiModal(option)
             .one('hide', function () {
                 $this.focus()
             })
@@ -554,7 +552,7 @@ muui.picker=function(option){
         beforerender:function(){},
         history:true//默认hash处理,接管浏览器返回
     },option);
-    var source = '<div class="modal fade {{classname}}">\
+    var source = '<div class="muui-modal fade {{classname}}">\
         <div class="modal-dialog">\
             <div class="modal-content">\
                 <div class="modal-body"></div>\
@@ -862,7 +860,7 @@ $(function(){
  * Created by yaoxy on 2017/3/22.
  */
 ;muui.toast = function(option){
-    var source = '<div class="modal muui-fixed-center muui-toast fade {{position}}" style="width:{{width}}">\
+    var source = '<div class="muui-modal muui-fixed-center muui-toast fade {{position}}" style="width:{{width}}">\
             <div class="modal-body">\
                 <p>{{text}}</p>\
             </div>\
@@ -883,7 +881,7 @@ $(function(){
     $html.mmodal(opt);
     if(opt.time){
         setTimeout(function(){//关闭浮层
-            $html.modal("hide");
+            $html.muuiModal("hide");
         },opt.time);
     }
     return $html;
