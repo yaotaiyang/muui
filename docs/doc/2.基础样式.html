@@ -148,9 +148,9 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
                 <div class="muui-cell">
                     <div class="main-info line-clamp-2">2行截取 line-clamp-2:用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性</div>
                     <div class="align-right">
-                        <span data-type="warning" class="btn muui-tag">催</span>
-                        <span data-type="danger" class="btn muui-tag">急</span>
-                        <span data-type="primary" class="btn muui-tag">超</span>
+                        <span data-type="warning" class="muui-btn muui-tag">催</span>
+                        <span data-type="danger" class="muui-btn muui-tag">急</span>
+                        <span data-type="primary" class="muui-btn muui-tag">超</span>
                     </div>
                 </div>
             </div>
@@ -272,59 +272,59 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
 <p><style>
 .demo-btns{background-color:#eee;padding:10px;width:320px;height:440px;overflow-y:auto;}
 .demo-btns .inner{background-color:#fff;}
-.demo-btns .btn{margin-bottom:10px;}
+.demo-btns .muui-btn{margin-bottom:10px;}
 </style></p>
 <div class="demo-btns pull-right">
     <div class="inner">
-        <div muui-ac="click-active" data-type="primary" class="btn" >按钮样式1</div>
-        <div data-type="danger" class="btn" >按钮样式2</div>
-        <div data-type="success" class="btn" >muui.confirm()</div>
-        <div data-type="warning" class="btn" >muui.toast()</div>
-        <div data-type="info" class="btn" >muui.loading()</div>
-        <div data-type="primary" class="btn" >muui.pickerpage()</div>
-        <div data-type="primary" class="btn">muui.pickermodal()</div>
+        <div muui-ac="click-active" data-type="primary" class="muui-btn" >按钮样式1</div>
+        <div data-type="danger" class="muui-btn" >按钮样式2</div>
+        <div data-type="success" class="muui-btn" >muui.confirm()</div>
+        <div data-type="warning" class="muui-btn" >muui.toast()</div>
+        <div data-type="info" class="muui-btn" >muui.loading()</div>
+        <div data-type="primary" class="muui-btn" >muui.pickerpage()</div>
+        <div data-type="primary" class="muui-btn">muui.pickermodal()</div>
         <br>
         <h3>行内按钮</h3>
         <hr>
-        <div data-type="primary" class="btn inline-block">行内按钮</div>
-        <div data-type="danger" class="btn inline-block">行内按钮</div>
-        <div data-type="success" class="btn inline-block">行内按钮</div>
-        <div data-type="info" class="btn inline-block">行内按钮</div>
+        <div data-type="primary" class="muui-btn inline-block">行内按钮</div>
+        <div data-type="danger" class="muui-btn inline-block">行内按钮</div>
+        <div data-type="success" class="muui-btn inline-block">行内按钮</div>
+        <div data-type="info" class="muui-btn inline-block">行内按钮</div>
         <br>
         <br>
         <h3>小按钮</h3>
         <hr>
-        <div data-type="primary" class="btn btn-sm">行内按钮</div>
-        <div data-type="danger" class="btn btn-sm">行内按钮</div>
-        <div data-type="success" class="btn btn-sm">行内按钮</div>
-        <div data-type="info" class="btn btn-sm">行内按钮</div>
+        <div data-type="primary" class="muui-btn btn-sm">行内按钮</div>
+        <div data-type="danger" class="muui-btn btn-sm">行内按钮</div>
+        <div data-type="success" class="muui-btn btn-sm">行内按钮</div>
+        <div data-type="info" class="muui-btn btn-sm">行内按钮</div>
     </div>
 </div>
 
 
 
 <div style="margin-right:340px;"><pre>
-<code>&lt;div data-type=&quot;primary&quot; class=&quot;btn&quot; &gt;按钮样式1&lt;/div&gt;
-&lt;div data-type=&quot;danger&quot; class=&quot;btn&quot; &gt;按钮样式2&lt;/div&gt;
-&lt;div data-type=&quot;success&quot; class=&quot;btn&quot; &gt;muui.confirm()&lt;/div&gt;
-&lt;div data-type=&quot;warning&quot; class=&quot;btn&quot; &gt;muui.toast()&lt;/div&gt;
-&lt;div data-type=&quot;info&quot; class=&quot;btn&quot; &gt;muui.loading()&lt;/div&gt;
-&lt;div data-type=&quot;primary&quot; class=&quot;btn&quot; &gt;muui.pickerpage()&lt;/div&gt;
-&lt;div data-type=&quot;primary&quot; class=&quot;btn&quot;&gt;muui.pickermodal()&lt;/div&gt;
+<code>&lt;div data-type=&quot;primary&quot; class=&quot;muui-btn&quot; &gt;按钮样式1&lt;/div&gt;
+&lt;div data-type=&quot;danger&quot; class=&quot;muui-btn&quot; &gt;按钮样式2&lt;/div&gt;
+&lt;div data-type=&quot;success&quot; class=&quot;muui-btn&quot; &gt;muui.confirm()&lt;/div&gt;
+&lt;div data-type=&quot;warning&quot; class=&quot;muui-btn&quot; &gt;muui.toast()&lt;/div&gt;
+&lt;div data-type=&quot;info&quot; class=&quot;muui-btn&quot; &gt;muui.loading()&lt;/div&gt;
+&lt;div data-type=&quot;primary&quot; class=&quot;muui-btn&quot; &gt;muui.pickerpage()&lt;/div&gt;
+&lt;div data-type=&quot;primary&quot; class=&quot;muui-btn&quot;&gt;muui.pickermodal()&lt;/div&gt;
 &lt;br&gt;
 &lt;h3&gt;行内按钮&lt;/h3&gt;
 &lt;hr&gt;
-&lt;div data-type=&quot;primary&quot; class=&quot;btn inline-block&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;danger&quot; class=&quot;btn inline-block&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;success&quot; class=&quot;btn inline-block&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;info&quot; class=&quot;btn inline-block&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;primary&quot; class=&quot;muui-btn inline-block&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;danger&quot; class=&quot;muui-btn inline-block&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;success&quot; class=&quot;muui-btn inline-block&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;info&quot; class=&quot;muui-btn inline-block&quot;&gt;按钮&lt;/div&gt;
 &lt;br&gt;
 &lt;h3&gt;小按钮&lt;/h3&gt;
 &lt;hr&gt;
-&lt;div data-type=&quot;primary&quot; class=&quot;btn btn-sm&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;danger&quot; class=&quot;btn btn-sm&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;success&quot; class=&quot;btn btn-sm&quot;&gt;按钮&lt;/div&gt;
-&lt;div data-type=&quot;info&quot; class=&quot;btn btn-sm&quot;&gt;按钮&lt;/div&gt;</code>
+&lt;div data-type=&quot;primary&quot; class=&quot;muui-btn btn-sm&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;danger&quot; class=&quot;muui-btn btn-sm&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;success&quot; class=&quot;muui-btn btn-sm&quot;&gt;按钮&lt;/div&gt;
+&lt;div data-type=&quot;info&quot; class=&quot;muui-btn btn-sm&quot;&gt;按钮&lt;/div&gt;</code>
     </pre>
 </div>
 <div class="clearfix"></div>
@@ -551,7 +551,7 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
             阅读并同意 <span class="muui-color">yaotaiyang</span>
         </label>
         </div>
-        <div muui-ac="click-active" data-type="primary" class="btn">提交</div>
+        <div muui-ac="click-active" data-type="primary" class="muui-btn">提交</div>
     </form>
 </div>
 <div style="margin-right:340px;"><pre>
@@ -575,7 +575,7 @@ h1, h2, h3 {margin-top: 20px;margin-bottom: 10px;}</style>
        阅读并同意 &lt;span class=&quot;muui-color&quot;&gt;yaotaiyang&lt;/span&gt;
    &lt;/label&gt;
    &lt;/div&gt;
-   &lt;div muui-ac=&quot;click-active&quot; data-type=&quot;primary&quot; class=&quot;btn&quot;&gt;提交&lt;/div&gt;
+   &lt;div muui-ac=&quot;click-active&quot; data-type=&quot;primary&quot; class=&quot;muui-btn&quot;&gt;提交&lt;/div&gt;
 &lt;/form&gt;</code>
     </pre>
 </div>
